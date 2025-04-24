@@ -148,3 +148,98 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
             for line in log_lines:
                 f.write(line + "\n")
     return max_flow
+
+def min_cost_flow(capacity, cost, source, sink, desired_flow,
+                  labels, log_filename=None, verbose=True):
+    n = len(capacity)
+    
+    residual_cap = [row[:] for row in capacity]
+    residual_cost = [row[:] for row in cost]       
+    flow   = [[0]*n for _ in range(n)]
+    total_flow  = 0
+    total_cost  = 0
+    INF = float("inf")
+    log_lines = []
+    iteration = 0
+
+    if verbose:
+        print("Début du flot à coût minimal (flot demandé =", desired_flow, ")")
+
+    while total_flow < desired_flow:
+        iteration += 1
+        
+        dist   = [INF]*n
+        parent = [-1]*n
+        dist[source] = 0
+        for _ in range(n-1):
+            improved = False
+            for u in range(n):
+                if dist[u] == INF:           
+                    continue
+                for v in range(n):
+                    if residual_cap[u][v] > 0 and dist[u] + residual_cost[u][v] < dist[v]:
+                        dist[v] = dist[u] + residual_cost[u][v]
+                        parent[v] = u
+                        improved = True
+            if not improved:
+                break
+
+        
+        if dist[sink] == INF:
+            raise ValueError("Impossible d’envoyer le flot demandé : réseau saturé")
+
+        
+        path = []
+        path_flow = INF
+        v = sink
+        while v != source:
+            u = parent[v]
+            path.insert(0, v)
+            path_flow = min(path_flow, residual_cap[u][v])
+            v = u
+        path.insert(0, source)
+
+        
+        path_flow = min(path_flow, desired_flow - total_flow)
+
+        
+        if verbose:
+            bellman_str = ", ".join(
+                f"{labels[i]}:{dist[i] if dist[i]!=INF else 'INF'}" for i in range(n)
+            )
+            print(f"Iteration {iteration}: distances -> {bellman_str}")
+            path_labels = " -> ".join(labels[i] for i in path)
+            print(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
+        log_lines.append(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
+
+        
+        v = sink
+        while v != source:
+            u = parent[v]
+           
+            flow[u][v] += path_flow
+            flow[v][u] -= path_flow
+            
+            residual_cap[u][v] -= path_flow
+            residual_cap[v][u] += path_flow
+            
+            residual_cost[v][u] = -residual_cost[u][v] 
+            v = u
+
+        total_flow += path_flow
+        total_cost += path_flow * dist[sink]
+
+        if verbose:
+            print_matrix(residual_cap, labels, title="Capacités résiduelles après augmentation")
+
+    # Fin 
+    if verbose:
+        print(f"Flot total envoyé = {total_flow} | Coût total = {total_cost}")
+
+    log_lines.append(f"Flot total = {total_flow}")
+    log_lines.append(f"Coût total = {total_cost}")
+    if log_filename is not None:
+        with open(log_filename, "w") as f:
+            f.write("\n".join(log_lines))
+
+    return total_flow, total_cost
