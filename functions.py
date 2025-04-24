@@ -79,6 +79,7 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
         # temporary excess until node are processed
         excess[v] = capacity[source][v]
     excess[source] = 0
+    #bliblou
 
     def push(u, v):
         # Determine how much flow can we really send (depends on b to c)
