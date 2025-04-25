@@ -407,7 +407,7 @@ def main():
         print("4. Quitter")
         choix = input("Votre choix: ").strip()
         if choix == "1":
-            file_number = input("Entrez le nom du fichier: ").strip()
+            file_number = input("Entrez le numéro du graphe: ").strip()
             filename = f"graphes/Graphe_{file_number}.txt"
             try:
                 n, capacity, cost = read_graph_from_file(filename)
