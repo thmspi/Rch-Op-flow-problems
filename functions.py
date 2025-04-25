@@ -1,4 +1,12 @@
+#!/usr/bin/env python3
+import random
+import time
+import csv
+import os
+from collections import deque
+
 # Function to read the file format and load graphs
+
 def read_graph_from_file(filename):
     print(f"Tentative d'ouverture de : {filename}")
     with open(filename, 'r') as f:
