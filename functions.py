@@ -53,6 +53,70 @@ def generate_vertex_labels(n):
     return labels
 
 
+# ------------------------------------------------------------------
+# Algorithme ford_fulkerson
+# ------------------------------------------------------------------
+
+def ford_fulkerson(capacity, source, sink, labels, log_filename=None, verbose=True):
+    n = len(capacity)
+    flow = [[0] * n for _ in range(n)]
+    max_flow = 0
+    iteration = 0
+    log_lines = []
+
+    def build_residual_graph():
+        residual = [[0] * n for _ in range(n)]
+        for u in range(n):
+            for v in range(n):
+                if capacity[u][v] > flow[u][v]:
+                    residual[u][v] = capacity[u][v] - flow[u][v]
+                if flow[u][v] > 0:
+                    residual[v][u] = flow[u][v]
+        return residual
+
+    while True:
+        residual = build_residual_graph()
+        path = bfs(residual, source, sink)
+
+        if not path:
+            break  # plus de chemin augmentant
+
+        # Calcul du flot possible sur ce chemin
+        path_flow = float("inf")
+        for i in range(len(path) - 1):
+            u = path[i]
+            v = path[i + 1]
+            path_flow = min(path_flow, residual[u][v])
+
+        # Log affichage
+        iteration += 1
+        path_labels = " -> ".join(labels[i] for i in path)
+        log_lines.append(f"Iteration {iteration}: Chemin augmentant: {path_labels} avec flot {path_flow}")
+        if verbose:
+            print(f"Iteration {iteration}: Chemin augmentant: {path_labels} avec flot {path_flow}")
+
+        # Mise à jour des flots
+        for i in range(len(path) - 1):
+            u = path[i]
+            v = path[i + 1]
+            if capacity[u][v] > 0:
+                flow[u][v] += path_flow
+            else:
+                flow[v][u] -= path_flow
+
+        max_flow += path_flow
+
+        if verbose:
+            print_matrix(build_residual_graph(), labels, title="Capacités résiduelles")
+
+    log_lines.append(f"Flot maximum: {max_flow}")
+    if verbose:
+        print(f"Flot maximum: {max_flow}")
+    if log_filename:
+        with open(log_filename, "w") as f:
+            for line in log_lines:
+                f.write(line + "\n")
+    return max_flow
 
 
 def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True):
