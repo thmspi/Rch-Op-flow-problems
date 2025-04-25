@@ -407,7 +407,8 @@ def main():
         print("4. Quitter")
         choix = input("Votre choix: ").strip()
         if choix == "1":
-            filename = "graphes/"+input("Entrez le nom du fichier: ").strip()
+            file_number = input("Entrez le nom du fichier: ").strip()
+            filename = f"graphes/Graphe_{file_number}.txt"
             try:
                 n, capacity, cost = read_graph_from_file(filename)
             except Exception as e:
@@ -427,15 +428,15 @@ def main():
             alg_choice = input("Votre choix: ").strip()
             timestamp = time.strftime("%Y%m%d_%H%M%S")
             if alg_choice == "1":
-                log_filename = f"log_ff_{timestamp}.txt"
+                log_filename = f"E2_trace{file_number}-FF.txt"
                 max_flow = ford_fulkerson(capacity, 0, n - 1, labels, log_filename=log_filename)
                 print(f"Flot maximum (Ford-Fulkerson): {max_flow}")
             elif alg_choice == "2":
-                log_filename = f"log_pr_{timestamp}.txt"
+                log_filename = f"E2_trace{file_number}-PR.txt"
                 max_flow = push_relabel(capacity, 0, n - 1, labels, log_filename=log_filename)
                 print(f"Flot maximum (Push-Relabel): {max_flow}")
             elif alg_choice == "3":
-                log_filename = f"log_min_{timestamp}.txt"
+                log_filename = f"E2_trace{file_number}-MF.txt"
                 max_flow, total_cost = min_cost_flow(capacity, cost, 0, n - 1, labels, log_filename=log_filename)
                 print(f"Flot maximum (Flot à coût minimal): {max_flow} avec coût total: {total_cost}")
             else:
