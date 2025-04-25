@@ -52,7 +52,37 @@ def generate_vertex_labels(n):
             labels.append(number_to_letters(i - 1))
     return labels
 
+def bfs(residual, source, sink):
+    """
+    BFS dans le graphe résiduel.
+    Retourne une liste représentant le chemin de source à sink s'il existe, sinon None.
+    """
+    n = len(residual)
+    visited = [False] * n
+    parent = [-1] * n
+    queue = deque()
 
+    queue.append(source)
+    visited[source] = True
+
+    while queue:
+        u = queue.popleft()
+
+        for v in range(n):
+            if not visited[v] and residual[u][v] > 0:
+                parent[v] = u
+                visited[v] = True
+                queue.append(v)
+                if v == sink:
+                    # Reconstituer le chemin de source à sink
+                    path = []
+                    current = sink
+                    while current != -1:
+                        path.insert(0, current)
+                        current = parent[current]
+                    return path
+
+    return None  # Aucun chemin trouvable
 # ------------------------------------------------------------------
 # Algorithme ford_fulkerson
 # ------------------------------------------------------------------
@@ -307,3 +337,136 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,
             f.write("\n".join(log_lines))
 
     return total_flow, total_cost
+
+def generate_random_graph(n):
+    """
+    Génère un graphe aléatoire de n sommets.
+    Pour environ n²/2 arêtes (les autres restent à 0),
+    les capacités et les coûts sont choisis aléatoirement.
+    """
+    capacity = [[0] * n for _ in range(n)]
+    cost = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            if i != j and random.random() < 0.5:
+                capacity[i][j] = random.randint(1, 20)
+                cost[i][j] = random.randint(1, 10)
+    return capacity, cost
+
+def evaluate_complexity():
+    """
+    Pour chaque algorithme et pour des tailles n ∈ {10, 20},
+    effectue 100 exécutions sur un graphe aléatoire puis sauvegarde
+    chaque temps d'exécution individuel dans un fichier CSV.
+    """
+    sizes = [10, 20, 40, 100, 400, 1000, 4000, 10000]
+    algorithms = {
+        'Ford-Fulkerson': ford_fulkerson,
+        'Push-Relabel': push_relabel,
+        'MinCostFlow': min_cost_flow
+    }
+
+    for alg_name, alg_func in algorithms.items():
+        filename = f"complexity_{alg_name.replace(' ', '_')}.csv"
+        with open(filename, "w", newline="") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(["n", "iteration", "execution_time"])
+            for n in sizes:
+                print(f"Test pour n = {n} avec {alg_name}")
+                for iteration in range(1, 101):
+                    capacity, cost = generate_random_graph(n)
+                    labels = generate_vertex_labels(n)
+                    source = 0
+                    sink = n - 1
+
+                    start = time.time()
+                    if alg_name == 'MinCostFlow':
+                        alg_func(capacity, cost, source, sink, labels, verbose=False)
+                    else:
+                        alg_func(capacity, source, sink, labels, verbose=False)
+                    end = time.time()
+
+                    exec_time = end - start
+                    writer.writerow([n, iteration, exec_time])
+                print(f"{alg_name} terminé pour n = {n}")
+
+def main():
+    while True:
+        print("Menu principal:")
+        print("1. Charger un graphe depuis un fichier")
+        print("2. Générer un graphe aléatoire")
+        print("3. Évaluation de la complexité (tests de performance)")
+        print("4. Quitter")
+        choix = input("Votre choix: ").strip()
+        if choix == "1":
+            filename = "graphes/"+input("Entrez le nom du fichier: ").strip()
+            try:
+                n, capacity, cost = read_graph_from_file(filename)
+            except Exception as e:
+                print("Erreur lors de la lecture du fichier:", e)
+                continue
+            labels = generate_vertex_labels(n)
+            print_matrix(capacity, labels, title="Matrice des capacités")
+            if cost is not None:
+                print_matrix(cost, labels, title="Matrice des coûts")
+            else:
+                # Si la matrice de coûts n'est pas fournie, on suppose un coût de 1 pour chaque arête existante
+                cost = [[1 if capacity[i][j] != 0 else 0 for j in range(n)] for i in range(n)]
+            print("Choisissez l'algorithme à utiliser:")
+            print("1. Ford-Fulkerson")
+            print("2. Push-Relabel")
+            print("3. Flot à coût minimal")
+            alg_choice = input("Votre choix: ").strip()
+            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            if alg_choice == "1":
+                log_filename = f"log_ff_{timestamp}.txt"
+                max_flow = ford_fulkerson(capacity, 0, n - 1, labels, log_filename=log_filename)
+                print(f"Flot maximum (Ford-Fulkerson): {max_flow}")
+            elif alg_choice == "2":
+                log_filename = f"log_pr_{timestamp}.txt"
+                max_flow = push_relabel(capacity, 0, n - 1, labels, log_filename=log_filename)
+                print(f"Flot maximum (Push-Relabel): {max_flow}")
+            elif alg_choice == "3":
+                log_filename = f"log_min_{timestamp}.txt"
+                max_flow, total_cost = min_cost_flow(capacity, cost, 0, n - 1, labels, log_filename=log_filename)
+                print(f"Flot maximum (Flot à coût minimal): {max_flow} avec coût total: {total_cost}")
+            else:
+                print("Choix d'algorithme invalide.")
+        elif choix == "2":
+            try:
+                n = int(input("Entrez le nombre de sommets (n): ").strip())
+            except ValueError:
+                print("Veuillez entrer un nombre valide.")
+                continue
+            capacity, cost = generate_random_graph(n)
+            labels = generate_vertex_labels(n)
+            print_matrix(capacity, labels, title="Matrice des capacités (Graphe aléatoire)")
+            print_matrix(cost, labels, title="Matrice des coûts (Graphe aléatoire)")
+            print("Choisissez l'algorithme à utiliser:")
+            print("1. Ford-Fulkerson")
+            print("2. Push-Relabel")
+            print("3. Flot à coût minimal")
+            alg_choice = input("Votre choix: ").strip()
+            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            if alg_choice == "1":
+                log_filename = f"log_ff_{timestamp}.txt"
+                max_flow = ford_fulkerson(capacity, 0, n - 1, labels, log_filename=log_filename)
+                print(f"Flot maximum (Ford-Fulkerson): {max_flow}")
+            elif alg_choice == "2":
+                log_filename = f"log_pr_{timestamp}.txt"
+                max_flow = push_relabel(capacity, 0, n - 1, labels, log_filename=log_filename)
+                print(f"Flot maximum (Push-Relabel): {max_flow}")
+            elif alg_choice == "3":
+                log_filename = f"log_min_{timestamp}.txt"
+                max_flow, total_cost = min_cost_flow(capacity, cost, 0, n - 1, labels, log_filename=log_filename)
+                print(f"Flot maximum (Flot à coût minimal): {max_flow} avec coût total: {total_cost}")
+            else:
+                print("Choix d'algorithme invalide.")
+        elif choix == "3":
+            evaluate_complexity()
+        elif choix == "4":
+            print("Au revoir!")
+            break
+        else:
+            print("Choix invalide.")
+        print()
