@@ -251,8 +251,7 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
                 f.write(line + "\n")
     return max_flow
 
-def min_cost_flow(capacity, cost, source, sink, desired_flow,
-                  labels, log_filename=None, verbose=True):
+def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filename=None, verbose=True):
     n = len(capacity)
     
     residual_cap = [row[:] for row in capacity]
@@ -305,14 +304,19 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,
         path_flow = min(path_flow, desired_flow - total_flow)
 
         
+        # Toujours construire ces variables, peu importe verbose
+        bellman_str = ", ".join(
+            f"{labels[i]}:{dist[i] if dist[i]!=INF else 'INF'}" for i in range(n)
+        )
+        path_labels = " -> ".join(labels[i] for i in path)
+
         if verbose:
-            bellman_str = ", ".join(
-                f"{labels[i]}:{dist[i] if dist[i]!=INF else 'INF'}" for i in range(n)
-            )
             print(f"Iteration {iteration}: distances -> {bellman_str}")
-            path_labels = " -> ".join(labels[i] for i in path)
             print(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
+
+        # Peu importe verbose, ajouter au log
         log_lines.append(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
+
 
         
         v = sink
@@ -348,55 +352,92 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,
 
 def generate_random_graph(n):
     """
-    Génère un graphe aléatoire de n sommets.
-    Pour environ n²/2 arêtes (les autres restent à 0),
-    les capacités et les coûts sont choisis aléatoirement.
+    Génère un graphe aléatoire de n sommets,
+    avec exactement n²/2 arêtes,
+    sans boucle (i ≠ j),
+    et avec des capacités et coûts aléatoires.
     """
     capacity = [[0] * n for _ in range(n)]
     cost = [[0] * n for _ in range(n)]
-    for i in range(n):
-        for j in range(n):
-            if i != j and random.random() < 0.5:
-                capacity[i][j] = random.randint(1, 20)
-                cost[i][j] = random.randint(1, 10)
+    
+    # Liste de toutes les arêtes possibles sans boucle
+    edges = [(i, j) for i in range(n) for j in range(n) if i != j]
+    
+    # Choisir aléatoirement exactement n²/2 arêtes parmi toutes les possibles
+    num_edges = (n * n) // 2
+    selected_edges = random.sample(edges, num_edges)
+    
+    # Assigner capacité et coût aléatoire aux arêtes choisies
+    for i, j in selected_edges:
+        capacity[i][j] = random.randint(1, 20)
+        cost[i][j] = random.randint(1, 10)
+    
     return capacity, cost
+
 
 def evaluate_complexity():
     """
-    Pour chaque algorithme et pour des tailles n ∈ {10, 20},
-    effectue 100 exécutions sur un graphe aléatoire puis sauvegarde
-    chaque temps d'exécution individuel dans un fichier CSV.
+    Pour chaque taille n ∈ {10, 20, 40, 100, 400},
+    génère un graphe aléatoire,
+    puis exécute Ford-Fulkerson, Push-Relabel et Min-Cost-Flow
+    sur le même graphe pour 100 itérations.
     """
-    sizes = [10, 20, 40, 100, 400, 1000, 4000, 10000]
-    algorithms = {
-        'Ford-Fulkerson': ford_fulkerson,
-        'Push-Relabel': push_relabel,
-        'MinCostFlow': min_cost_flow
+    sizes = [10, 20, 40, 100]
+    #sizes = [10, 20, 40, 100, 400, 1000, 4000, 10000]
+
+    # Préparer un CSV pour chaque algorithme
+    files = {
+        'Ford-Fulkerson': open("complexity_Ford_Fulkerson.csv", "w", newline=""),
+        'Push-Relabel': open("complexity_Push_Relabel.csv", "w", newline=""),
+        'MinCostFlow': open("complexity_MinCostFlow.csv", "w", newline=""),
     }
+    writers = {name: csv.writer(f) for name, f in files.items()}
+    for writer in writers.values():
+        writer.writerow(["n", "iteration", "execution_time"])
 
-    for alg_name, alg_func in algorithms.items():
-        filename = f"complexity_{alg_name.replace(' ', '_')}.csv"
-        with open(filename, "w", newline="") as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerow(["n", "iteration", "execution_time"])
-            for n in sizes:
-                print(f"Test pour n = {n} avec {alg_name}")
-                for iteration in range(1, 101):
-                    capacity, cost = generate_random_graph(n)
-                    labels = generate_vertex_labels(n)
-                    source = 0
-                    sink = n - 1
+    for n in sizes:
+        print(f"=== Tests pour n = {n} ===")
+        for iteration in range(1, 101):
+            # 1. Générer un graphe aléatoire
+            capacity, cost = generate_random_graph(n)
+            labels = generate_vertex_labels(n)
+            source = 0
+            sink = n - 1
 
-                    start = time.time()
-                    if alg_name == 'MinCostFlow':
-                        alg_func(capacity, cost, source, sink, labels, verbose=False)
-                    else:
-                        alg_func(capacity, source, sink, labels, verbose=False)
-                    end = time.time()
+            # 2. Ford-Fulkerson
+            start = time.time()
+            max_flow_ff = ford_fulkerson(capacity, source, sink, labels, verbose=False)
+            end = time.time()
+            exec_time_ff = end - start
+            writers['Ford-Fulkerson'].writerow([n, iteration, exec_time_ff])
 
-                    exec_time = end - start
-                    writer.writerow([n, iteration, exec_time])
-                print(f"{alg_name} terminé pour n = {n}")
+            # 3. Push-Relabel
+            start = time.time()
+            max_flow_pr = push_relabel(capacity, source, sink, labels, verbose=False)
+            end = time.time()
+            exec_time_pr = end - start
+            writers['Push-Relabel'].writerow([n, iteration, exec_time_pr])
+
+            # 4. Min-Cost Flow
+            # Choisir desired_flow = max_flow / 2, arrondi à l'entier supérieur (>=1)
+            max_flow = max(max_flow_ff, max_flow_pr)
+            desired_flow = max(1, max_flow // 2)
+            start = time.time()
+            try:
+                min_cost_flow(capacity, cost, source, sink, desired_flow, labels, verbose=False)
+            except ValueError:
+                print(f"\nMinCostFlow impossible pour n={n}, itération={iteration}. Réseau saturé.\n")
+
+            end = time.time()
+            exec_time_mcf = end - start
+            writers['MinCostFlow'].writerow([n, iteration, exec_time_mcf])
+
+        print(f"=== Terminé pour n = {n} ===\n\n\n")
+
+    # Fermer tous les fichiers
+    for f in files.values():
+        f.close()
+
 
 def main():
     while True:
@@ -437,7 +478,8 @@ def main():
                 print(f"Flot maximum (Push-Relabel): {max_flow}")
             elif alg_choice == "3":
                 log_filename = f"E2_trace{file_number}-MF.txt"
-                max_flow, total_cost = min_cost_flow(capacity, cost, 0, n - 1, labels, log_filename=log_filename)
+                desired_flow = int(input("Entrez le flow désiré: ").strip())
+                max_flow, total_cost = min_cost_flow(capacity, cost, 0, n - 1, desired_flow, labels, log_filename=log_filename)
                 print(f"Flot maximum (Flot à coût minimal): {max_flow} avec coût total: {total_cost}")
             else:
                 print("Choix d'algorithme invalide.")
@@ -458,17 +500,19 @@ def main():
             alg_choice = input("Votre choix: ").strip()
             timestamp = time.strftime("%Y%m%d_%H%M%S")
             if alg_choice == "1":
-                log_filename = f"log_ff_{timestamp}.txt"
+                log_filename = f"E2_trace{file_number}-FF.txt"
                 max_flow = ford_fulkerson(capacity, 0, n - 1, labels, log_filename=log_filename)
                 print(f"Flot maximum (Ford-Fulkerson): {max_flow}")
             elif alg_choice == "2":
-                log_filename = f"log_pr_{timestamp}.txt"
+                log_filename = f"E2_trace{file_number}-PR.txt"
                 max_flow = push_relabel(capacity, 0, n - 1, labels, log_filename=log_filename)
                 print(f"Flot maximum (Push-Relabel): {max_flow}")
             elif alg_choice == "3":
-                log_filename = f"log_min_{timestamp}.txt"
-                max_flow, total_cost = min_cost_flow(capacity, cost, 0, n - 1, labels, log_filename=log_filename)
+                log_filename = f"E2_trace{file_number}-MF.txt"
+                desired_flow = int(input("Entrez le flow désiré: ").strip())
+                max_flow, total_cost = min_cost_flow(capacity, cost, 0, n - 1, desired_flow, labels, log_filename=log_filename)
                 print(f"Flot maximum (Flot à coût minimal): {max_flow} avec coût total: {total_cost}")
+
             else:
                 print("Choix d'algorithme invalide.")
         elif choix == "3":

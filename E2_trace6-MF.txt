@@ -1,0 +1,5 @@
+Iteration 1: chemin s -> b -> c -> t | flot 2 | coût unitaire 3
+Iteration 2: chemin s -> a -> t | flot 1 | coût unitaire 7
+Iteration 3: chemin s -> a -> c -> d -> t | flot 1 | coût unitaire 14
+Flot total = 4
+Coût total = 27
