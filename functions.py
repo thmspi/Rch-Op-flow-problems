@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
 import random
 import time
 import csv
-import os
 from collections import deque
 
 # Function to read the file format and load graphs
@@ -27,17 +25,37 @@ def read_graph_from_file(filename):
             cost.append(row)
     return n, capacity, cost
 
-# Function to display the matrix (v0)
+# Function to display the matrix (v1)
 def print_matrix(matrix, labels, title=""):
     if title:
         print(title)
-    header = "    " + " ".join(f"{l:>5}" for l in labels)
+
+    n = len(labels)
+    cell_width = max(5, max(len(str(x)) for row in matrix for x in row) + 1)
+
+    def hline(left, mid, right):
+        return "    " + left + mid.join(["─" * cell_width for _ in range(n)]) + right
+
+    # Top border and header
+    top = hline("┌", "┬", "┐")
+    header = "    │" + "│".join(f"{l:^{cell_width}}" for l in labels) + "│"
+    sep = hline("├", "┼", "┤")
+    bottom = hline("└", "┴", "┘")
+
+    print(top)
     print(header)
+    print(sep)
+
     for i, row in enumerate(matrix):
-        row_label = labels[i]
-        row_str = f"{row_label:>3} " + " ".join(f"{val:>5}" for val in row)
-        print(row_str)
+        row_label = f"{labels[i]:>3} │"
+        row_values = "│".join(f"{val:^{cell_width}}" for val in row)
+        print(row_label + row_values + "│")
+        if i == n - 1:
+            print(bottom)
+        else:
+            print(sep)
     print()
+
 
 # Functions to switch back and forth between letter and number (for display)
 def number_to_letters(k):
@@ -60,11 +78,11 @@ def generate_vertex_labels(n):
             labels.append(number_to_letters(i - 1))
     return labels
 
+
+# (Parcours en largeur) Return list of vertices or none if no way from source to sink
 def bfs(residual, source, sink):
-    """
-    BFS dans le graphe résiduel.
-    Retourne une liste représentant le chemin de source à sink s'il existe, sinon None.
-    """
+
+
     n = len(residual)
     visited = [False] * n
     parent = [-1] * n
@@ -91,9 +109,7 @@ def bfs(residual, source, sink):
                     return path
 
     return None  # Aucun chemin trouvable
-# ------------------------------------------------------------------
-# Algorithme ford_fulkerson
-# ------------------------------------------------------------------
+
 
 def ford_fulkerson(capacity, source, sink, labels, log_filename=None, verbose=True):
     n = len(capacity)
@@ -158,10 +174,6 @@ def ford_fulkerson(capacity, source, sink, labels, log_filename=None, verbose=Tr
 
 
 def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True):
-    """
-    Implements the Push-Relabel algorithm for maximum flow calculation.
-    The program provides a detailed log for each push and relabel operation.
-    """
 
     # Initialization
 
@@ -181,7 +193,6 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
         # temporary excess until node are processed
         excess[v] = capacity[source][v]
     excess[source] = 0
-    #bliblou
 
     def push(u, v):
         # Determine how much flow can we really send (depends on b to c)
@@ -197,12 +208,12 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
 
     def relabel(u):
         min_height = float("inf")
-        # We check if there is a neighboor where we can push flow just depending on the height
+        # We check if there is a neighbor where we can push flow just depending on the height
         for v in range(n):
             if capacity[u][v] - flow[u][v] > 0:
                 min_height = min(min_height, height[v])
         old_height = height[u]
-        # Update height depending on the lowest neighboord height found
+        # Update height depending on the lowest neighbor height found
         height[u] = min_height + 1
         if verbose:
             log_lines.append(f"Réétiqueter {labels[u]} de {old_height} à {height[u]}")
@@ -304,7 +315,6 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
         path_flow = min(path_flow, desired_flow - total_flow)
 
         
-        # Toujours construire ces variables, peu importe verbose
         bellman_str = ", ".join(
             f"{labels[i]}:{dist[i] if dist[i]!=INF else 'INF'}" for i in range(n)
         )
@@ -314,7 +324,6 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
             print(f"Iteration {iteration}: distances -> {bellman_str}")
             print(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
 
-        # Peu importe verbose, ajouter au log
         log_lines.append(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
 
 
@@ -338,7 +347,6 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
         if verbose:
             print_matrix(residual_cap, labels, title="Capacités résiduelles après augmentation")
 
-    # Fin 
     if verbose:
         print(f"Flot total envoyé = {total_flow} | Coût total = {total_cost}")
 
@@ -351,23 +359,15 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
     return total_flow, total_cost
 
 def generate_random_graph(n):
-    """
-    Génère un graphe aléatoire de n sommets,
-    avec exactement n²/2 arêtes,
-    sans boucle (i ≠ j),
-    et avec des capacités et coûts aléatoires.
-    """
+
     capacity = [[0] * n for _ in range(n)]
     cost = [[0] * n for _ in range(n)]
     
-    # Liste de toutes les arêtes possibles sans boucle
     edges = [(i, j) for i in range(n) for j in range(n) if i != j]
     
-    # Choisir aléatoirement exactement n²/2 arêtes parmi toutes les possibles
     num_edges = (n * n) // 2
     selected_edges = random.sample(edges, num_edges)
     
-    # Assigner capacité et coût aléatoire aux arêtes choisies
     for i, j in selected_edges:
         capacity[i][j] = random.randint(1, 20)
         cost[i][j] = random.randint(1, 10)
@@ -376,16 +376,8 @@ def generate_random_graph(n):
 
 
 def evaluate_complexity():
-    """
-    Pour chaque taille n ∈ {10, 20, 40, 100, 400},
-    génère un graphe aléatoire,
-    puis exécute Ford-Fulkerson, Push-Relabel et Min-Cost-Flow
-    sur le même graphe pour 100 itérations.
-    """
-    sizes = [10, 20, 40, 100]
-    #sizes = [10, 20, 40, 100, 400, 1000, 4000, 10000]
+    sizes = [10, 20, 40, 100, 400, 1000, 4000, 10000]
 
-    # Préparer un CSV pour chaque algorithme
     files = {
         'Ford-Fulkerson': open("complexity_Ford_Fulkerson.csv", "w", newline=""),
         'Push-Relabel': open("complexity_Push_Relabel.csv", "w", newline=""),
@@ -431,10 +423,10 @@ def evaluate_complexity():
             end = time.time()
             exec_time_mcf = end - start
             writers['MinCostFlow'].writerow([n, iteration, exec_time_mcf])
+            print(f"end of iteration : {iteration}")
 
         print(f"=== Terminé pour n = {n} ===\n\n\n")
 
-    # Fermer tous les fichiers
     for f in files.values():
         f.close()
 

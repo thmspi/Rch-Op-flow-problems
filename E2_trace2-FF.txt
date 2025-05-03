@@ -1,0 +1,8 @@
+Iteration 1: Chemin augmentant: s -> a -> f -> t avec flot 4
+Iteration 2: Chemin augmentant: s -> c -> h -> t avec flot 7
+Iteration 3: Chemin augmentant: s -> a -> d -> f -> t avec flot 1
+Iteration 4: Chemin augmentant: s -> a -> d -> g -> t avec flot 2
+Iteration 5: Chemin augmentant: s -> a -> e -> d -> g -> t avec flot 3
+Iteration 6: Chemin augmentant: s -> b -> e -> d -> g -> t avec flot 1
+Iteration 7: Chemin augmentant: s -> b -> e -> d -> g -> f -> t avec flot 2
+Flot maximum: 20
