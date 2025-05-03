@@ -1,0 +1,126 @@
+Adjacency Matrix (Capacity):
+    ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+    │  A  │  B  │  C  │  D  │  E  │  F  │  G  │  H  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  A │  0  │  5  │  0  │  9  │  0  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  B │  0  │  0  │  7  │  0  │  0  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  C │  0  │  0  │  0  │  0  │  4  │  3  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  D │  0  │  0  │  4  │  0  │  0  │  6  │  5  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  E │  0  │  0  │  0  │  0  │  0  │  6  │  0  │  6  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  F │  0  │  0  │  0  │  0  │  0  │  0  │  0  │  5  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  G │  0  │  0  │  0  │  0  │  0  │  0  │  0  │  7  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  H │  0  │  0  │  0  │  0  │  0  │  0  │  0  │  0  │
+    └─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+No cost matrix provided.
+
+--- Method: Ford Fulkerson ---
+Iteration 1: Chemin augmentant: s -> c -> e -> t avec flot 5
+Iteration 2: Chemin augmentant: s -> c -> f -> t avec flot 4
+Iteration 3: Chemin augmentant: s -> a -> b -> d -> t avec flot 4
+Iteration 4: Chemin augmentant: s -> a -> b -> e -> c -> f -> t avec flot 1
+Flot maximum: 14
+
+--- Method: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 5
+Pousser 5 de a vers b
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 5
+Réétiqueter a de 1 à 2
+État de a: hauteur = 2, excès = 0
+Pousser 4 de b vers d
+Pousser 1 de b vers e
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 9
+Réétiqueter a de 2 à 2
+État de a: hauteur = 2, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 6 de c vers e
+Pousser 3 de c vers f
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 0 à 1
+État de d: hauteur = 1, excès = 4
+Réétiqueter a de 2 à 2
+État de a: hauteur = 2, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Pousser 4 de d vers e
+État de d: hauteur = 1, excès = 0
+Réétiqueter e de 0 à 1
+État de e: hauteur = 1, excès = 11
+Réétiqueter a de 2 à 2
+État de a: hauteur = 2, excès = 0
+Réétiqueter b de 1 à 2
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 1 à 1
+État de d: hauteur = 1, excès = 0
+Pousser 5 de e vers t
+État de e: hauteur = 1, excès = 6
+Réétiqueter a de 2 à 3
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 2 à 2
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 1 à 1
+État de d: hauteur = 1, excès = 0
+Réétiqueter e de 1 à 2
+État de e: hauteur = 2, excès = 6
+Réétiqueter a de 3 à 3
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 2 à 3
+État de b: hauteur = 3, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 1 à 1
+État de d: hauteur = 1, excès = 0
+Pousser 6 de e vers c
+État de e: hauteur = 2, excès = 0
+Réétiqueter f de 0 à 1
+État de f: hauteur = 1, excès = 3
+Réétiqueter a de 3 à 4
+État de a: hauteur = 4, excès = 0
+Réétiqueter b de 3 à 3
+État de b: hauteur = 3, excès = 0
+Réétiqueter c de 1 à 2
+État de c: hauteur = 2, excès = 6
+Réétiqueter a de 4 à 4
+État de a: hauteur = 4, excès = 0
+Réétiqueter b de 3 à 3
+État de b: hauteur = 3, excès = 0
+Pousser 2 de c vers f
+État de c: hauteur = 2, excès = 4
+Réétiqueter a de 4 à 4
+État de a: hauteur = 4, excès = 0
+Réétiqueter b de 3 à 3
+État de b: hauteur = 3, excès = 0
+Réétiqueter c de 2 à 3
+État de c: hauteur = 3, excès = 4
+Réétiqueter a de 4 à 4
+État de a: hauteur = 4, excès = 0
+Réétiqueter b de 3 à 3
+État de b: hauteur = 3, excès = 0
+Pousser 4 de c vers e
+État de c: hauteur = 3, excès = 0
+Réétiqueter d de 1 à 1
+État de d: hauteur = 1, excès = 0
+Pousser 4 de e vers d
+État de e: hauteur = 2, excès = 0
+Pousser 5 de f vers t
+État de f: hauteur = 1, excès = 0
+Pousser 4 de d vers t
+

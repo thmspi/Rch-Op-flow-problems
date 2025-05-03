@@ -1,0 +1,116 @@
+Adjacency Matrix (Capacity):
+    ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+    │  A  │  B  │  C  │  D  │  E  │  F  │  G  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  A │  0  │ 150 │ 150 │  0  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  B │  0  │  0  │  0  │ 120 │ 100 │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  C │  0  │  0  │  0  │  0  │ 100 │ 120 │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  D │  0  │  0  │  0  │  0  │  0  │  0  │ 150 │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  E │  0  │  0  │  0  │ 50  │  0  │  0  │ 80  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  F │  0  │  0  │  0  │  0  │ 50  │  0  │ 150 │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  G │  0  │  0  │  0  │  0  │  0  │  0  │  0  │
+    └─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+No cost matrix provided.
+
+--- Method: Ford Fulkerson ---
+Iteration 1: Chemin augmentant: s -> a -> c -> t avec flot 120
+Iteration 2: Chemin augmentant: s -> a -> d -> t avec flot 30
+Iteration 3: Chemin augmentant: s -> b -> d -> t avec flot 50
+Iteration 4: Chemin augmentant: s -> b -> e -> t avec flot 100
+Flot maximum: 300
+
+--- Method: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 150
+Pousser 120 de a vers c
+Pousser 30 de a vers d
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 150
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Pousser 100 de b vers d
+Pousser 50 de b vers e
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 120
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 120 de c vers t
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 0 à 1
+État de d: hauteur = 1, excès = 130
+Réétiqueter a de 1 à 2
+État de a: hauteur = 2, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Pousser 80 de d vers t
+État de d: hauteur = 1, excès = 50
+Réétiqueter a de 2 à 2
+État de a: hauteur = 2, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 1 à 2
+État de d: hauteur = 2, excès = 50
+Réétiqueter a de 2 à 3
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Pousser 50 de d vers b
+État de d: hauteur = 2, excès = 0
+Réétiqueter e de 0 à 1
+État de e: hauteur = 1, excès = 50
+Réétiqueter a de 3 à 3
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 1 à 2
+État de b: hauteur = 2, excès = 50
+Réétiqueter a de 3 à 3
+État de a: hauteur = 3, excès = 0
+Pousser 50 de b vers e
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 2 à 2
+État de d: hauteur = 2, excès = 0
+Pousser 100 de e vers t
+État de e: hauteur = 1, excès = 0
+
+Cost Matrix:
+
+    ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+    │  A  │  B  │  C  │  D  │  E  │  F  │  G  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  A │  0  │  2  │  3  │  0  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  B │  0  │  0  │  0  │  4  │  1  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  C │  0  │  0  │  0  │  0  │  2  │  5  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  D │  0  │  0  │  0  │  0  │  0  │  0  │  3  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  E │  0  │  0  │  0  │  6  │  0  │  0  │  3  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  F │  0  │  0  │  0  │  0  │  8  │  0  │  4  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  G │  0  │  0  │  0  │  0  │  0  │  0  │  0  │
+    └─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+--- Method: Min Cost Flow ---
+Iteration 1: chemin s -> a -> d -> t | flot 4 | coût unitaire 6
+Flot total = 4
+Coût total = 24
+

@@ -1,0 +1,106 @@
+Adjacency Matrix (Capacity):
+    ┌─────┬─────┬─────┬─────┬─────┬─────┐
+    │  A  │  B  │  C  │  D  │  E  │  F  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  A │  0  │ 15  │  8  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  B │  0  │  0  │ 20  │  4  │ 10  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  C │  0  │  0  │  0  │ 15  │  4  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  D │  0  │  0  │  0  │  0  │ 20  │  5  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  E │  0  │  0  │  5  │  0  │  0  │ 15  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  F │  0  │  0  │  0  │  0  │  0  │  0  │
+    └─────┴─────┴─────┴─────┴─────┴─────┘
+
+
+--- Method: Ford Fulkerson ---
+Iteration 1: Chemin augmentant: s -> a -> c -> t avec flot 4
+Iteration 2: Chemin augmentant: s -> a -> d -> t avec flot 10
+Iteration 3: Chemin augmentant: s -> b -> c -> t avec flot 1
+Iteration 4: Chemin augmentant: s -> b -> d -> t avec flot 4
+Iteration 5: Chemin augmentant: s -> b -> c -> d -> t avec flot 1
+Flot maximum: 20
+
+
+--- Method: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 15
+Pousser 15 de a vers b
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 23
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Pousser 15 de b vers c
+Pousser 4 de b vers d
+État de b: hauteur = 1, excès = 4
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 2
+État de b: hauteur = 2, excès = 4
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Pousser 4 de b vers a
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 15
+Pousser 4 de a vers d
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 2 à 2
+État de b: hauteur = 2, excès = 0
+Pousser 15 de c vers d
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 0 à 1
+État de d: hauteur = 1, excès = 23
+Réétiqueter a de 1 à 2
+État de a: hauteur = 2, excès = 0
+Réétiqueter b de 2 à 3
+État de b: hauteur = 3, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Pousser 15 de d vers t
+État de d: hauteur = 1, excès = 8
+Réétiqueter a de 2 à 2
+État de a: hauteur = 2, excès = 0
+Réétiqueter b de 3 à 3
+État de b: hauteur = 3, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 1 à 2
+État de d: hauteur = 2, excès = 8
+Réétiqueter a de 2 à 2
+État de a: hauteur = 2, excès = 0
+Réétiqueter b de 3 à 3
+État de b: hauteur = 3, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Pousser 8 de d vers c
+État de d: hauteur = 2, excès = 0
+Pousser 5 de c vers t
+
+Cost Matrix:
+
+    ┌─────┬─────┬─────┬─────┬─────┬─────┐
+    │  A  │  B  │  C  │  D  │  E  │  F  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  A │  0  │  4  │  4  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  B │  0  │  0  │  2  │  2  │  6  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  C │  0  │  0  │  0  │  1  │  3  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  D │  0  │  0  │  0  │  0  │  2  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  E │  0  │  0  │  3  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  F │  0  │  0  │  0  │  0  │  0  │  0  │
+    └─────┴─────┴─────┴─────┴─────┴─────┘
+
+--- Method: Min Cost Flow ---
+Iteration 1: chemin s -> b -> c -> t | flot 4 | coût unitaire 5
+Flot total = 4
+Coût total = 20
+

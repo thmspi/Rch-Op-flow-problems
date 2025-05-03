@@ -1,0 +1,96 @@
+Adjacency Matrix (Capacity):
+    ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+    │  A  │  B  │  C  │  D  │  E  │  F  │  G  │  H  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  A │  0  │  9  │  5  │  7  │  0  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  B │  0  │  0  │  3  │  0  │  6  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  C │  0  │  0  │  0  │  0  │  0  │  7  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  D │  0  │  0  │  0  │  0  │  0  │  2  │  8  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  E │  0  │  0  │  3  │  0  │  0  │  0  │  0  │  8  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  F │  0  │  0  │  0  │  0  │  0  │  0  │  0  │ 10  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  G │  0  │  0  │  0  │  0  │  0  │  3  │  0  │  5  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  H │  0  │  0  │  0  │  0  │  0  │  0  │  0  │  0  │
+    └─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+No cost matrix provided.
+
+--- Method: Ford Fulkerson ---
+Iteration 1: Chemin augmentant: s -> a -> d -> t avec flot 6
+Iteration 2: Chemin augmentant: s -> b -> e -> t avec flot 5
+Iteration 3: Chemin augmentant: s -> c -> e -> t avec flot 2
+Iteration 4: Chemin augmentant: s -> c -> f -> t avec flot 5
+Iteration 5: Chemin augmentant: s -> a -> b -> e -> t avec flot 2
+Flot maximum: 20
+
+--- Method: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 9
+Pousser 3 de a vers b
+Pousser 6 de a vers d
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 8
+Réétiqueter a de 1 à 9
+État de a: hauteur = 9, excès = 0
+Pousser 7 de b vers e
+État de b: hauteur = 1, excès = 1
+Réétiqueter a de 9 à 9
+État de a: hauteur = 9, excès = 0
+Réétiqueter b de 1 à 9
+État de b: hauteur = 9, excès = 1
+Réétiqueter a de 9 à 9
+État de a: hauteur = 9, excès = 0
+Pousser 1 de b vers s
+État de b: hauteur = 9, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 7
+Réétiqueter a de 9 à 9
+État de a: hauteur = 9, excès = 0
+Réétiqueter b de 9 à 9
+État de b: hauteur = 9, excès = 0
+Pousser 2 de c vers e
+Pousser 5 de c vers f
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 0 à 1
+État de d: hauteur = 1, excès = 6
+Réétiqueter a de 9 à 9
+État de a: hauteur = 9, excès = 0
+Réétiqueter b de 9 à 9
+État de b: hauteur = 9, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Pousser 6 de d vers t
+État de d: hauteur = 1, excès = 0
+Réétiqueter e de 0 à 1
+État de e: hauteur = 1, excès = 9
+Réétiqueter a de 9 à 9
+État de a: hauteur = 9, excès = 0
+Réétiqueter b de 9 à 9
+État de b: hauteur = 9, excès = 0
+Réétiqueter c de 1 à 1
+État de c: hauteur = 1, excès = 0
+Réétiqueter d de 1 à 1
+État de d: hauteur = 1, excès = 0
+Pousser 9 de e vers t
+État de e: hauteur = 1, excès = 0
+Réétiqueter f de 0 à 1
+État de f: hauteur = 1, excès = 5
+Réétiqueter a de 9 à 9
+État de a: hauteur = 9, excès = 0
+Réétiqueter b de 9 à 9
+État de b: hauteur = 9, excès = 0
+Réétiqueter c de 1 à 2
+État de c: hauteur = 2, excès = 0
+Réétiqueter d de 1 à 1
+État de d: hauteur = 1, excès = 0
+Réétiqueter e de 1 à 1
+État de e: hauteur = 1, excès = 0
+Pousser 5 de f vers t
+État de f: hauteur = 1, excès = 0
+

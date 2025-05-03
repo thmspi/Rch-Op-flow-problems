@@ -2,6 +2,7 @@ import random
 import time
 import csv
 from collections import deque
+import os 
 
 # Function to read the file format and load graphs
 
@@ -77,6 +78,59 @@ def generate_vertex_labels(n):
         else:
             labels.append(number_to_letters(i - 1))
     return labels
+
+# Log function
+
+
+def log_results_to_file(filename, method_name, capacity, cost, log_content):
+    filepath = f"traces/{filename}"
+    file_exists = os.path.exists(filepath)
+
+    with open(filepath, "a", encoding="utf-8") as f:
+        labels = [chr(ord('A') + i) for i in range(len(capacity))]  # A, B, C, ...
+        if not file_exists:
+            f.write("Adjacency Matrix (Capacity):\n")
+            f.write(get_matrix_string(capacity, labels))
+            f.write("\n")
+        if method_name == "Min Cost Flow":
+            if cost:
+                f.write("Cost Matrix:\n\n")
+                f.write(get_matrix_string(cost, labels))
+            else:
+                f.write("No cost matrix provided.\n")
+        f.write(f"\n--- Method: {method_name} ---\n")
+        f.write("\n".join(log_content) + "\n\n")
+
+
+
+def get_matrix_string(matrix, labels):
+    output = []
+    n = len(labels)
+    cell_width = max(5, max(len(str(x)) for row in matrix for x in row) + 1)
+
+    def hline(left, mid, right):
+        return "    " + left + mid.join(["─" * cell_width for _ in range(n)]) + right
+
+    top = hline("┌", "┬", "┐")
+    header = "    │" + "│".join(f"{l:^{cell_width}}" for l in labels) + "│"
+    sep = hline("├", "┼", "┤")
+    bottom = hline("└", "┴", "┘")
+
+    output.append(top)
+    output.append(header)
+    output.append(sep)
+
+    for i, row in enumerate(matrix):
+        row_label = f"{labels[i]:>3} │"
+        row_values = "│".join(f"{val:^{cell_width}}" for val in row)
+        output.append(row_label + row_values + "│")
+        if i == n - 1:
+            output.append(bottom)
+        else:
+            output.append(sep)
+    output.append("")  # for extra newline
+    return "\n".join(output)
+
 
 
 # (Parcours en largeur) Return list of vertices or none if no way from source to sink
@@ -167,9 +221,7 @@ def ford_fulkerson(capacity, source, sink, labels, log_filename=None, verbose=Tr
     if verbose:
         print(f"Flot maximum: {max_flow}")
     if log_filename:
-        with open(log_filename, "w") as f:
-            for line in log_lines:
-                f.write(line + "\n")
+        log_results_to_file(log_filename, "Ford Fulkerson", capacity, cost = None, log_content = log_lines)
     return max_flow
 
 
@@ -257,9 +309,7 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
         print("Excès:", {labels[i]: excess[i] for i in range(n)})
         print(f"Flot maximum (Push-Relabel): {max_flow}")
     if log_filename is not None:
-        with open(log_filename, "w") as f:
-            for line in log_lines:
-                f.write(line + "\n")
+        log_results_to_file(log_filename, "Push Relabel", capacity, cost = None, log_content = log_lines)
     return max_flow
 
 def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filename=None, verbose=True):
@@ -353,8 +403,7 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
     log_lines.append(f"Flot total = {total_flow}")
     log_lines.append(f"Coût total = {total_cost}")
     if log_filename is not None:
-        with open(log_filename, "w") as f:
-            f.write("\n".join(log_lines))
+        log_results_to_file(log_filename, "Min Cost Flow", capacity, cost, log_content = log_lines)
 
     return total_flow, total_cost
 
@@ -459,17 +508,14 @@ def main():
             print("2. Push-Relabel")
             print("3. Flot à coût minimal")
             alg_choice = input("Votre choix: ").strip()
-            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            log_filename = f"E2_trace{file_number}.txt"
             if alg_choice == "1":
-                log_filename = f"E2_trace{file_number}-FF.txt"
                 max_flow = ford_fulkerson(capacity, 0, n - 1, labels, log_filename=log_filename)
                 print(f"Flot maximum (Ford-Fulkerson): {max_flow}")
             elif alg_choice == "2":
-                log_filename = f"E2_trace{file_number}-PR.txt"
                 max_flow = push_relabel(capacity, 0, n - 1, labels, log_filename=log_filename)
                 print(f"Flot maximum (Push-Relabel): {max_flow}")
             elif alg_choice == "3":
-                log_filename = f"E2_trace{file_number}-MF.txt"
                 desired_flow = int(input("Entrez le flow désiré: ").strip())
                 max_flow, total_cost = min_cost_flow(capacity, cost, 0, n - 1, desired_flow, labels, log_filename=log_filename)
                 print(f"Flot maximum (Flot à coût minimal): {max_flow} avec coût total: {total_cost}")
@@ -490,17 +536,14 @@ def main():
             print("2. Push-Relabel")
             print("3. Flot à coût minimal")
             alg_choice = input("Votre choix: ").strip()
-            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            log_filename = f"E2_trace{file_number}.txt"
             if alg_choice == "1":
-                log_filename = f"E2_trace{file_number}-FF.txt"
                 max_flow = ford_fulkerson(capacity, 0, n - 1, labels, log_filename=log_filename)
                 print(f"Flot maximum (Ford-Fulkerson): {max_flow}")
             elif alg_choice == "2":
-                log_filename = f"E2_trace{file_number}-PR.txt"
                 max_flow = push_relabel(capacity, 0, n - 1, labels, log_filename=log_filename)
                 print(f"Flot maximum (Push-Relabel): {max_flow}")
             elif alg_choice == "3":
-                log_filename = f"E2_trace{file_number}-MF.txt"
                 desired_flow = int(input("Entrez le flow désiré: ").strip())
                 max_flow, total_cost = min_cost_flow(capacity, cost, 0, n - 1, desired_flow, labels, log_filename=log_filename)
                 print(f"Flot maximum (Flot à coût minimal): {max_flow} avec coût total: {total_cost}")
