@@ -1,4 +1,4 @@
-Adjacency Matrix (Capacity):
+Matrice d'adjacence (capacité):
     ┌─────┬─────┬─────┬─────┬─────┬─────┐
     │  A  │  B  │  C  │  D  │  E  │  F  │
     ├─────┼─────┼─────┼─────┼─────┼─────┤
@@ -14,15 +14,16 @@ Adjacency Matrix (Capacity):
     ├─────┼─────┼─────┼─────┼─────┼─────┤
   F │  0  │  0  │  0  │  0  │  0  │  0  │
     └─────┴─────┴─────┴─────┴─────┴─────┘
-No cost matrix provided.
 
---- Method: Ford Fulkerson ---
+
+--- Méthode: Ford Fulkerson ---
 Iteration 1: Chemin augmentant: s -> a -> t avec flot 1
 Iteration 2: Chemin augmentant: s -> a -> c -> t avec flot 2
 Iteration 3: Chemin augmentant: s -> b -> d -> t avec flot 2
 Flot maximum: 5
 
---- Method: Push Relabel ---
+
+--- Méthode: Push Relabel ---
 Réétiqueter a de 0 à 1
 État de a: hauteur = 1, excès = 4
 Pousser 4 de a vers c
@@ -75,8 +76,9 @@ Pousser 1 de c vers b
 Pousser 2 de d vers t
 État de d: hauteur = 1, excès = 0
 Pousser 1 de b vers d
+Flot maximum: 6
 
-Cost Matrix:
+Matrice des coûts:
 
     ┌─────┬─────┬─────┬─────┬─────┬─────┐
     │  A  │  B  │  C  │  D  │  E  │  F  │
@@ -94,7 +96,8 @@ Cost Matrix:
   F │  0  │  0  │  0  │  0  │  0  │  0  │
     └─────┴─────┴─────┴─────┴─────┴─────┘
 
---- Method: Min Cost Flow ---
+--- Méthode: Flot à coût minimal ---
+Flow désiré par l'utilisateur: 4
 Iteration 1: chemin s -> b -> c -> t | flot 2 | coût unitaire 3
 Iteration 2: chemin s -> a -> t | flot 1 | coût unitaire 7
 Iteration 3: chemin s -> a -> c -> d -> t | flot 1 | coût unitaire 14

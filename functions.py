@@ -89,16 +89,16 @@ def log_results_to_file(filename, method_name, capacity, cost, log_content):
     with open(filepath, "a", encoding="utf-8") as f:
         labels = [chr(ord('A') + i) for i in range(len(capacity))]  # A, B, C, ...
         if not file_exists:
-            f.write("Adjacency Matrix (Capacity):\n")
+            f.write("Matrice d'adjacence (capacité):\n")
             f.write(get_matrix_string(capacity, labels))
             f.write("\n")
-        if method_name == "Min Cost Flow":
+        if method_name == "Flot à coût minimal":
             if cost:
-                f.write("Cost Matrix:\n\n")
+                f.write("Matrice des coûts:\n\n")
                 f.write(get_matrix_string(cost, labels))
             else:
-                f.write("No cost matrix provided.\n")
-        f.write(f"\n--- Method: {method_name} ---\n")
+                f.write("Pas de matrice de coût.\n")
+        f.write(f"\n--- Méthode: {method_name} ---\n")
         f.write("\n".join(log_content) + "\n\n")
 
 
@@ -302,6 +302,7 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
                     push(u, v)
 
     max_flow = sum(flow[source][i] for i in range(n))
+    log_lines.append(f"Flot maximum: {max_flow}")
     if verbose:
         print("Matrice de flot finale:")
         print_matrix(flow, labels, title="Matrice de flot")
@@ -324,6 +325,7 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
     log_lines = []
     iteration = 0
 
+    log_lines.append(f"Flow désiré par l'utilisateur: {desired_flow}")
     if verbose:
         print("Début du flot à coût minimal (flot demandé =", desired_flow, ")")
 
@@ -403,7 +405,7 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
     log_lines.append(f"Flot total = {total_flow}")
     log_lines.append(f"Coût total = {total_cost}")
     if log_filename is not None:
-        log_results_to_file(log_filename, "Min Cost Flow", capacity, cost, log_content = log_lines)
+        log_results_to_file(log_filename, "Flot à coût minimal", capacity, cost, log_content = log_lines)
 
     return total_flow, total_cost
 

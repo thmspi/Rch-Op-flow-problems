@@ -1,4 +1,4 @@
-Adjacency Matrix (Capacity):
+Matrice d'adjacence (capacité):
     ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
     │  A  │  B  │  C  │  D  │  E  │  F  │  G  │  H  │
     ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
@@ -18,9 +18,9 @@ Adjacency Matrix (Capacity):
     ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
   H │  0  │  0  │  0  │  0  │  0  │  0  │  0  │  0  │
     └─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
-No cost matrix provided.
 
---- Method: Ford Fulkerson ---
+
+--- Méthode: Ford Fulkerson ---
 Iteration 1: Chemin augmentant: s -> c -> t avec flot 5
 Iteration 2: Chemin augmentant: s -> a -> d -> t avec flot 1
 Iteration 3: Chemin augmentant: s -> a -> e -> t avec flot 6
@@ -28,7 +28,8 @@ Iteration 4: Chemin augmentant: s -> b -> e -> t avec flot 2
 Iteration 5: Chemin augmentant: s -> b -> f -> t avec flot 1
 Flot maximum: 15
 
---- Method: Push Relabel ---
+
+--- Méthode: Push Relabel ---
 Réétiqueter a de 0 à 1
 État de a: hauteur = 1, excès = 7
 Pousser 1 de a vers d
@@ -194,4 +195,5 @@ Réétiqueter e de 10 à 10
 Pousser 1 de f vers b
 État de f: hauteur = 10, excès = 0
 Pousser 1 de b vers s
+Flot maximum: 15
 
