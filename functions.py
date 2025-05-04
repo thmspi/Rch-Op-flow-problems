@@ -295,11 +295,38 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
             log_lines.append(f"État de {labels[u]}: hauteur = {height[u]}, excès = {excess[u]}")
 
     # Delete all remaining excess next to the source
-    for u in range(n):
-        if u != source and u != sink and excess[u] > 0:
+    # for u in range(n):
+    #     if u != source and u != sink and excess[u] > 0:
+    #         for v in range(n):
+    #             if capacity[u][v] - flow[u][v] > 0 and height[u] == height[v] + 1:
+    #                 push(u, v)
+
+    # <<< NEW PART: Re-check for any remaining excess and reprocess if needed >>>
+    while any(excess[i] > 0 for i in vertices):
+        p = 0
+        while p < len(vertices):
+            u = vertices[p]
+            advanced = False
             for v in range(n):
                 if capacity[u][v] - flow[u][v] > 0 and height[u] == height[v] + 1:
-                    push(u, v)
+                    if excess[u] > 0:
+                        push(u, v)
+                        advanced = True
+            if not advanced:
+                relabel(u)
+
+            if excess[u] == 0:
+                p += 1
+            else:
+                p = 0
+
+            if verbose:
+                log_lines.append(f"[Repassage] État de {labels[u]}: hauteur = {height[u]}, excès = {excess[u]}")
+
+    # Clear source excess directly (not needed for correctness, just for cleanliness)
+    excess[source] = 0
+    if verbose:
+        log_lines.append(f"Excès à la source {labels[source]} remis à zéro.")
 
     max_flow = sum(flow[source][i] for i in range(n))
     log_lines.append(f"Flot maximum: {max_flow}")

@@ -104,3 +104,537 @@ Iteration 3: chemin s -> a -> c -> d -> t | flot 1 | coût unitaire 14
 Flot total = 4
 Coût total = 27
 
+
+--- Méthode: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 4
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 2
+Pousser 4 de a vers c
+État de a: hauteur = 1, excès = 0
+Pousser 2 de b vers c
+État de b: hauteur = 1, excès = 0
+Flot maximum: 6
+
+
+--- Méthode: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 4
+Pousser 4 de a vers c
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Pousser 2 de b vers c
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 6
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers d
+Pousser 2 de c vers t
+État de c: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 1 à 2
+État de c: hauteur = 2, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers a
+État de c: hauteur = 2, excès = 0
+Réétiqueter d de 0 à 1
+État de d: hauteur = 1, excès = 2
+Pousser 1 de a vers t
+État de a: hauteur = 1, excès = 1
+Réétiqueter a de 1 à 3
+État de a: hauteur = 3, excès = 1
+Pousser 1 de a vers c
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 1 à 2
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 2 à 3
+État de c: hauteur = 3, excès = 1
+Réétiqueter a de 3 à 4
+État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 2
+État de b: hauteur = 2, excès = 0
+Pousser 1 de c vers b
+État de c: hauteur = 3, excès = 0
+Pousser 2 de d vers t
+État de d: hauteur = 1, excès = 0
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Pousser 1 de b vers d
+[Repassage] État de b: hauteur = 2, excès = 0
+Réétiqueter c de 3 à 3
+[Repassage] État de c: hauteur = 3, excès = 0
+Réétiqueter d de 1 à 3
+[Repassage] État de d: hauteur = 3, excès = 1
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 4
+[Repassage] État de b: hauteur = 4, excès = 0
+Réétiqueter c de 3 à 5
+[Repassage] État de c: hauteur = 5, excès = 0
+Réétiqueter d de 3 à 5
+[Repassage] État de d: hauteur = 5, excès = 1
+Réétiqueter a de 4 à 6
+[Repassage] État de a: hauteur = 6, excès = 0
+Réétiqueter b de 4 à 6
+[Repassage] État de b: hauteur = 6, excès = 0
+Réétiqueter c de 5 à 7
+[Repassage] État de c: hauteur = 7, excès = 0
+Réétiqueter d de 5 à 7
+[Repassage] État de d: hauteur = 7, excès = 1
+Réétiqueter a de 6 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 6 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 7 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 7 à 8
+[Repassage] État de d: hauteur = 8, excès = 1
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 7 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Pousser 1 de d vers b
+[Repassage] État de d: hauteur = 8, excès = 0
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Pousser 1 de b vers s
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 8 à 9
+[Repassage] État de d: hauteur = 9, excès = 0
+Flot maximum: 5
+
+
+--- Méthode: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 4
+Pousser 4 de a vers c
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Pousser 2 de b vers c
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 6
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers d
+Pousser 2 de c vers t
+État de c: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 1 à 2
+État de c: hauteur = 2, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers a
+État de c: hauteur = 2, excès = 0
+Réétiqueter d de 0 à 1
+État de d: hauteur = 1, excès = 2
+Pousser 1 de a vers t
+État de a: hauteur = 1, excès = 1
+Réétiqueter a de 1 à 3
+État de a: hauteur = 3, excès = 1
+Pousser 1 de a vers c
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 1 à 2
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 2 à 3
+État de c: hauteur = 3, excès = 1
+Réétiqueter a de 3 à 4
+État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 2
+État de b: hauteur = 2, excès = 0
+Pousser 1 de c vers b
+État de c: hauteur = 3, excès = 0
+Pousser 2 de d vers t
+État de d: hauteur = 1, excès = 0
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Pousser 1 de b vers d
+[Repassage] État de b: hauteur = 2, excès = 0
+Réétiqueter c de 3 à 3
+[Repassage] État de c: hauteur = 3, excès = 0
+Réétiqueter d de 1 à 3
+[Repassage] État de d: hauteur = 3, excès = 1
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 4
+[Repassage] État de b: hauteur = 4, excès = 0
+Réétiqueter c de 3 à 5
+[Repassage] État de c: hauteur = 5, excès = 0
+Réétiqueter d de 3 à 5
+[Repassage] État de d: hauteur = 5, excès = 1
+Réétiqueter a de 4 à 6
+[Repassage] État de a: hauteur = 6, excès = 0
+Réétiqueter b de 4 à 6
+[Repassage] État de b: hauteur = 6, excès = 0
+Réétiqueter c de 5 à 7
+[Repassage] État de c: hauteur = 7, excès = 0
+Réétiqueter d de 5 à 7
+[Repassage] État de d: hauteur = 7, excès = 1
+Réétiqueter a de 6 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 6 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 7 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 7 à 8
+[Repassage] État de d: hauteur = 8, excès = 1
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 7 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Pousser 1 de d vers b
+[Repassage] État de d: hauteur = 8, excès = 0
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Pousser 1 de b vers s
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 8 à 9
+[Repassage] État de d: hauteur = 9, excès = 0
+Flot maximum: 5
+
+
+--- Méthode: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 4
+Pousser 4 de a vers c
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Pousser 2 de b vers c
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 6
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers d
+Pousser 2 de c vers t
+État de c: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 1 à 2
+État de c: hauteur = 2, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers a
+État de c: hauteur = 2, excès = 0
+Réétiqueter d de 0 à 1
+État de d: hauteur = 1, excès = 2
+Pousser 1 de a vers t
+État de a: hauteur = 1, excès = 1
+Réétiqueter a de 1 à 3
+État de a: hauteur = 3, excès = 1
+Pousser 1 de a vers c
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 1 à 2
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 2 à 3
+État de c: hauteur = 3, excès = 1
+Réétiqueter a de 3 à 4
+État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 2
+État de b: hauteur = 2, excès = 0
+Pousser 1 de c vers b
+État de c: hauteur = 3, excès = 0
+Pousser 2 de d vers t
+État de d: hauteur = 1, excès = 0
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Pousser 1 de b vers d
+[Repassage] État de b: hauteur = 2, excès = 0
+Réétiqueter c de 3 à 3
+[Repassage] État de c: hauteur = 3, excès = 0
+Réétiqueter d de 1 à 3
+[Repassage] État de d: hauteur = 3, excès = 1
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 4
+[Repassage] État de b: hauteur = 4, excès = 0
+Réétiqueter c de 3 à 5
+[Repassage] État de c: hauteur = 5, excès = 0
+Réétiqueter d de 3 à 5
+[Repassage] État de d: hauteur = 5, excès = 1
+Réétiqueter a de 4 à 6
+[Repassage] État de a: hauteur = 6, excès = 0
+Réétiqueter b de 4 à 6
+[Repassage] État de b: hauteur = 6, excès = 0
+Réétiqueter c de 5 à 7
+[Repassage] État de c: hauteur = 7, excès = 0
+Réétiqueter d de 5 à 7
+[Repassage] État de d: hauteur = 7, excès = 1
+Réétiqueter a de 6 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 6 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 7 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 7 à 8
+[Repassage] État de d: hauteur = 8, excès = 1
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 7 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Pousser 1 de d vers b
+[Repassage] État de d: hauteur = 8, excès = 0
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Pousser 1 de b vers s
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 8 à 9
+[Repassage] État de d: hauteur = 9, excès = 0
+Pousser 1 de s vers b
+Nettoyage: excès résiduel à la source s traité.
+Flot maximum: 6
+
+
+--- Méthode: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 4
+Pousser 4 de a vers c
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Pousser 2 de b vers c
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 6
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers d
+Pousser 2 de c vers t
+État de c: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 1 à 2
+État de c: hauteur = 2, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers a
+État de c: hauteur = 2, excès = 0
+Réétiqueter d de 0 à 1
+État de d: hauteur = 1, excès = 2
+Pousser 1 de a vers t
+État de a: hauteur = 1, excès = 1
+Réétiqueter a de 1 à 3
+État de a: hauteur = 3, excès = 1
+Pousser 1 de a vers c
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 1 à 2
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 2 à 3
+État de c: hauteur = 3, excès = 1
+Réétiqueter a de 3 à 4
+État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 2
+État de b: hauteur = 2, excès = 0
+Pousser 1 de c vers b
+État de c: hauteur = 3, excès = 0
+Pousser 2 de d vers t
+État de d: hauteur = 1, excès = 0
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Pousser 1 de b vers d
+[Repassage] État de b: hauteur = 2, excès = 0
+Réétiqueter c de 3 à 3
+[Repassage] État de c: hauteur = 3, excès = 0
+Réétiqueter d de 1 à 3
+[Repassage] État de d: hauteur = 3, excès = 1
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 4
+[Repassage] État de b: hauteur = 4, excès = 0
+Réétiqueter c de 3 à 5
+[Repassage] État de c: hauteur = 5, excès = 0
+Réétiqueter d de 3 à 5
+[Repassage] État de d: hauteur = 5, excès = 1
+Réétiqueter a de 4 à 6
+[Repassage] État de a: hauteur = 6, excès = 0
+Réétiqueter b de 4 à 6
+[Repassage] État de b: hauteur = 6, excès = 0
+Réétiqueter c de 5 à 7
+[Repassage] État de c: hauteur = 7, excès = 0
+Réétiqueter d de 5 à 7
+[Repassage] État de d: hauteur = 7, excès = 1
+Réétiqueter a de 6 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 6 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 7 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 7 à 8
+[Repassage] État de d: hauteur = 8, excès = 1
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 7 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Pousser 1 de d vers b
+[Repassage] État de d: hauteur = 8, excès = 0
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Pousser 1 de b vers s
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 8 à 9
+[Repassage] État de d: hauteur = 9, excès = 0
+Réétiqueter s de 6 à 8
+[Nettoyage Source] État de s: hauteur = 8, excès = 1
+Pousser 1 de s vers b
+[Nettoyage Source] État de s: hauteur = 8, excès = 0
+Flot maximum: 6
+
+
+--- Méthode: Push Relabel ---
+Réétiqueter a de 0 à 1
+État de a: hauteur = 1, excès = 4
+Pousser 4 de a vers c
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 0 à 1
+État de b: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Pousser 2 de b vers c
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 6
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers d
+Pousser 2 de c vers t
+État de c: hauteur = 1, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Réétiqueter c de 1 à 2
+État de c: hauteur = 2, excès = 2
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 1
+État de b: hauteur = 1, excès = 0
+Pousser 2 de c vers a
+État de c: hauteur = 2, excès = 0
+Réétiqueter d de 0 à 1
+État de d: hauteur = 1, excès = 2
+Pousser 1 de a vers t
+État de a: hauteur = 1, excès = 1
+Réétiqueter a de 1 à 3
+État de a: hauteur = 3, excès = 1
+Pousser 1 de a vers c
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 1 à 2
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 2 à 3
+État de c: hauteur = 3, excès = 1
+Réétiqueter a de 3 à 4
+État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 2
+État de b: hauteur = 2, excès = 0
+Pousser 1 de c vers b
+État de c: hauteur = 3, excès = 0
+Pousser 2 de d vers t
+État de d: hauteur = 1, excès = 0
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Pousser 1 de b vers d
+[Repassage] État de b: hauteur = 2, excès = 0
+Réétiqueter c de 3 à 3
+[Repassage] État de c: hauteur = 3, excès = 0
+Réétiqueter d de 1 à 3
+[Repassage] État de d: hauteur = 3, excès = 1
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Réétiqueter b de 2 à 4
+[Repassage] État de b: hauteur = 4, excès = 0
+Réétiqueter c de 3 à 5
+[Repassage] État de c: hauteur = 5, excès = 0
+Réétiqueter d de 3 à 5
+[Repassage] État de d: hauteur = 5, excès = 1
+Réétiqueter a de 4 à 6
+[Repassage] État de a: hauteur = 6, excès = 0
+Réétiqueter b de 4 à 6
+[Repassage] État de b: hauteur = 6, excès = 0
+Réétiqueter c de 5 à 7
+[Repassage] État de c: hauteur = 7, excès = 0
+Réétiqueter d de 5 à 7
+[Repassage] État de d: hauteur = 7, excès = 1
+Réétiqueter a de 6 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 6 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 7 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 7 à 8
+[Repassage] État de d: hauteur = 8, excès = 1
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Réétiqueter b de 7 à 7
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Pousser 1 de d vers b
+[Repassage] État de d: hauteur = 8, excès = 0
+Réétiqueter a de 7 à 7
+[Repassage] État de a: hauteur = 7, excès = 0
+Pousser 1 de b vers s
+[Repassage] État de b: hauteur = 7, excès = 0
+Réétiqueter c de 8 à 8
+[Repassage] État de c: hauteur = 8, excès = 0
+Réétiqueter d de 8 à 9
+[Repassage] État de d: hauteur = 9, excès = 0
+Excès à la source s remis à zéro.
+Flot maximum: 5
+
