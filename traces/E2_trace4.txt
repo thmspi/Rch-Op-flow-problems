@@ -28,6 +28,7 @@ Iteration 4: Chemin augmentant: s -> a -> b -> e -> c -> f -> t avec flot 1
 Flot maximum: 14
 
 
+
 --- Méthode: Push Relabel ---
 Réétiqueter a de 0 à 1
 État de a: hauteur = 1, excès = 5
@@ -123,6 +124,18 @@ Pousser 4 de e vers d
 État de e: hauteur = 2, excès = 0
 Pousser 5 de f vers t
 État de f: hauteur = 1, excès = 0
+Réétiqueter a de 4 à 4
+[Repassage] État de a: hauteur = 4, excès = 0
+Réétiqueter b de 3 à 3
+[Repassage] État de b: hauteur = 3, excès = 0
+Réétiqueter c de 3 à 3
+[Repassage] État de c: hauteur = 3, excès = 0
 Pousser 4 de d vers t
+[Repassage] État de d: hauteur = 1, excès = 0
+Réétiqueter e de 2 à 4
+[Repassage] État de e: hauteur = 4, excès = 0
+Réétiqueter f de 1 à 1
+[Repassage] État de f: hauteur = 1, excès = 0
+Excès à la source s remis à zéro.
 Flot maximum: 14
 

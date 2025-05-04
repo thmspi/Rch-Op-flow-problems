@@ -38,101 +38,200 @@ Flot maximum: 20
 --- Méthode: Push Relabel ---
 Réétiqueter a de 0 à 1
 État de a: hauteur = 1, excès = 16
+Pousser 3 de a vers b
 Pousser 3 de a vers d
 Pousser 3 de a vers e
 Pousser 4 de a vers f
-État de a: hauteur = 1, excès = 6
+État de a: hauteur = 1, excès = 3
 Réétiqueter a de 1 à 11
-État de a: hauteur = 11, excès = 6
-Pousser 6 de a vers s
+État de a: hauteur = 11, excès = 3
+Pousser 3 de a vers s
 État de a: hauteur = 11, excès = 0
 Réétiqueter b de 0 à 1
-État de b: hauteur = 1, excès = 3
+État de b: hauteur = 1, excès = 6
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
-Pousser 3 de b vers c
+Pousser 6 de b vers c
 État de b: hauteur = 1, excès = 0
 Réétiqueter c de 0 à 1
-État de c: hauteur = 1, excès = 11
+État de c: hauteur = 1, excès = 14
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
 Réétiqueter b de 1 à 1
 État de b: hauteur = 1, excès = 0
 Pousser 7 de c vers h
-État de c: hauteur = 1, excès = 4
+État de c: hauteur = 1, excès = 7
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
 Réétiqueter b de 1 à 1
 État de b: hauteur = 1, excès = 0
 Réétiqueter c de 1 à 2
-État de c: hauteur = 2, excès = 4
+État de c: hauteur = 2, excès = 7
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
 Réétiqueter b de 1 à 1
 État de b: hauteur = 1, excès = 0
-Pousser 3 de c vers b
+Pousser 6 de c vers b
 État de c: hauteur = 2, excès = 1
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
-Pousser 3 de b vers e
-État de b: hauteur = 1, excès = 0
-Réétiqueter c de 2 à 11
-État de c: hauteur = 11, excès = 1
+Pousser 5 de b vers e
+État de b: hauteur = 1, excès = 1
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
-Réétiqueter b de 1 à 1
-État de b: hauteur = 1, excès = 0
-Pousser 1 de c vers s
+Réétiqueter b de 1 à 3
+État de b: hauteur = 3, excès = 1
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Pousser 1 de b vers c
+État de b: hauteur = 3, excès = 0
+Réétiqueter c de 2 à 4
+État de c: hauteur = 4, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 3 à 5
+État de b: hauteur = 5, excès = 0
+Réétiqueter c de 4 à 6
+État de c: hauteur = 6, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 5 à 7
+État de b: hauteur = 7, excès = 0
+Réétiqueter c de 6 à 8
+État de c: hauteur = 8, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 7 à 9
+État de b: hauteur = 9, excès = 0
+Réétiqueter c de 8 à 10
+État de c: hauteur = 10, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 9 à 11
+État de b: hauteur = 11, excès = 0
+Réétiqueter c de 10 à 11
+État de c: hauteur = 11, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
+Pousser 2 de c vers s
 État de c: hauteur = 11, excès = 0
 Réétiqueter d de 0 à 1
 État de d: hauteur = 1, excès = 3
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
-Réétiqueter b de 1 à 1
-État de b: hauteur = 1, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
 Réétiqueter c de 11 à 11
 État de c: hauteur = 11, excès = 0
 Pousser 1 de d vers f
 Pousser 2 de d vers g
 État de d: hauteur = 1, excès = 0
 Réétiqueter e de 0 à 2
-État de e: hauteur = 2, excès = 6
+État de e: hauteur = 2, excès = 8
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
-Réétiqueter b de 1 à 3
-État de b: hauteur = 3, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
 Réétiqueter c de 11 à 11
 État de c: hauteur = 11, excès = 0
 Réétiqueter d de 1 à 1
 État de d: hauteur = 1, excès = 0
-Pousser 6 de e vers d
+Pousser 8 de e vers d
 État de e: hauteur = 2, excès = 0
 Réétiqueter f de 0 à 1
 État de f: hauteur = 1, excès = 5
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
-Réétiqueter b de 3 à 3
-État de b: hauteur = 3, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
 Réétiqueter c de 11 à 11
 État de c: hauteur = 11, excès = 0
 Pousser 6 de d vers g
-État de d: hauteur = 1, excès = 0
-Réétiqueter e de 2 à 2
-État de e: hauteur = 2, excès = 0
+État de d: hauteur = 1, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+État de c: hauteur = 11, excès = 0
+Réétiqueter d de 1 à 3
+État de d: hauteur = 3, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+État de c: hauteur = 11, excès = 0
+Pousser 2 de d vers e
+État de d: hauteur = 3, excès = 0
+Réétiqueter e de 2 à 4
+État de e: hauteur = 4, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+État de c: hauteur = 11, excès = 0
+Réétiqueter d de 3 à 5
+État de d: hauteur = 5, excès = 0
+Réétiqueter e de 4 à 6
+État de e: hauteur = 6, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+État de c: hauteur = 11, excès = 0
+Réétiqueter d de 5 à 7
+État de d: hauteur = 7, excès = 0
+Réétiqueter e de 6 à 8
+État de e: hauteur = 8, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+État de c: hauteur = 11, excès = 0
+Réétiqueter d de 7 à 9
+État de d: hauteur = 9, excès = 0
+Réétiqueter e de 8 à 10
+État de e: hauteur = 10, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+État de c: hauteur = 11, excès = 0
+Réétiqueter d de 9 à 11
+État de d: hauteur = 11, excès = 0
+Réétiqueter e de 10 à 12
+État de e: hauteur = 12, excès = 2
+Réétiqueter a de 11 à 11
+État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+État de c: hauteur = 11, excès = 0
+Réétiqueter d de 11 à 12
+État de d: hauteur = 12, excès = 0
+Pousser 2 de e vers a
+État de e: hauteur = 12, excès = 0
 Pousser 5 de f vers t
 État de f: hauteur = 1, excès = 0
 Réétiqueter g de 0 à 1
 État de g: hauteur = 1, excès = 8
-Réétiqueter a de 11 à 11
+Pousser 2 de a vers s
 État de a: hauteur = 11, excès = 0
-Réétiqueter b de 3 à 3
-État de b: hauteur = 3, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
 Réétiqueter c de 11 à 11
 État de c: hauteur = 11, excès = 0
-Réétiqueter d de 1 à 3
-État de d: hauteur = 3, excès = 0
-Réétiqueter e de 2 à 4
-État de e: hauteur = 4, excès = 0
+Réétiqueter d de 12 à 12
+État de d: hauteur = 12, excès = 0
+Réétiqueter e de 12 à 12
+État de e: hauteur = 12, excès = 0
 Réétiqueter f de 1 à 1
 État de f: hauteur = 1, excès = 0
 Pousser 4 de g vers h
@@ -142,14 +241,14 @@ Réétiqueter h de 0 à 1
 État de h: hauteur = 1, excès = 11
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
-Réétiqueter b de 3 à 5
-État de b: hauteur = 5, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
 Réétiqueter c de 11 à 11
 État de c: hauteur = 11, excès = 0
-Réétiqueter d de 3 à 5
-État de d: hauteur = 5, excès = 0
-Réétiqueter e de 4 à 6
-État de e: hauteur = 6, excès = 0
+Réétiqueter d de 12 à 12
+État de d: hauteur = 12, excès = 0
+Réétiqueter e de 12 à 12
+État de e: hauteur = 12, excès = 0
 Réétiqueter f de 1 à 1
 État de f: hauteur = 1, excès = 0
 Réétiqueter g de 1 à 1
@@ -158,14 +257,14 @@ Pousser 8 de h vers t
 État de h: hauteur = 1, excès = 3
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
-Réétiqueter b de 5 à 7
-État de b: hauteur = 7, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
 Réétiqueter c de 11 à 11
 État de c: hauteur = 11, excès = 0
-Réétiqueter d de 5 à 7
-État de d: hauteur = 7, excès = 0
-Réétiqueter e de 6 à 8
-État de e: hauteur = 8, excès = 0
+Réétiqueter d de 12 à 12
+État de d: hauteur = 12, excès = 0
+Réétiqueter e de 12 à 12
+État de e: hauteur = 12, excès = 0
 Réétiqueter f de 1 à 1
 État de f: hauteur = 1, excès = 0
 Réétiqueter g de 1 à 1
@@ -174,20 +273,80 @@ Réétiqueter h de 1 à 2
 État de h: hauteur = 2, excès = 3
 Réétiqueter a de 11 à 11
 État de a: hauteur = 11, excès = 0
-Réétiqueter b de 7 à 9
-État de b: hauteur = 9, excès = 0
+Réétiqueter b de 11 à 11
+État de b: hauteur = 11, excès = 0
 Réétiqueter c de 11 à 11
 État de c: hauteur = 11, excès = 0
-Réétiqueter d de 7 à 9
-État de d: hauteur = 9, excès = 0
-Réétiqueter e de 8 à 10
-État de e: hauteur = 10, excès = 0
+Réétiqueter d de 12 à 12
+État de d: hauteur = 12, excès = 0
+Réétiqueter e de 12 à 12
+État de e: hauteur = 12, excès = 0
 Réétiqueter f de 1 à 1
 État de f: hauteur = 1, excès = 0
 Réétiqueter g de 1 à 1
 État de g: hauteur = 1, excès = 0
 Pousser 3 de h vers g
 État de h: hauteur = 2, excès = 0
+Réétiqueter a de 11 à 11
+[Repassage] État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+[Repassage] État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+[Repassage] État de c: hauteur = 11, excès = 0
+Réétiqueter d de 12 à 12
+[Repassage] État de d: hauteur = 12, excès = 0
+Réétiqueter e de 12 à 12
+[Repassage] État de e: hauteur = 12, excès = 0
+Réétiqueter f de 1 à 1
+[Repassage] État de f: hauteur = 1, excès = 0
 Pousser 2 de g vers t
+[Repassage] État de g: hauteur = 1, excès = 1
+Réétiqueter a de 11 à 11
+[Repassage] État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+[Repassage] État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+[Repassage] État de c: hauteur = 11, excès = 0
+Réétiqueter d de 12 à 12
+[Repassage] État de d: hauteur = 12, excès = 0
+Réétiqueter e de 12 à 12
+[Repassage] État de e: hauteur = 12, excès = 0
+Réétiqueter f de 1 à 1
+[Repassage] État de f: hauteur = 1, excès = 0
+Réétiqueter g de 1 à 2
+[Repassage] État de g: hauteur = 2, excès = 1
+Réétiqueter a de 11 à 11
+[Repassage] État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+[Repassage] État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+[Repassage] État de c: hauteur = 11, excès = 0
+Réétiqueter d de 12 à 12
+[Repassage] État de d: hauteur = 12, excès = 0
+Réétiqueter e de 12 à 12
+[Repassage] État de e: hauteur = 12, excès = 0
+Réétiqueter f de 1 à 1
+[Repassage] État de f: hauteur = 1, excès = 0
+Pousser 1 de g vers f
+[Repassage] État de g: hauteur = 2, excès = 0
+Réétiqueter h de 2 à 3
+[Repassage] État de h: hauteur = 3, excès = 0
+Réétiqueter a de 11 à 11
+[Repassage] État de a: hauteur = 11, excès = 0
+Réétiqueter b de 11 à 11
+[Repassage] État de b: hauteur = 11, excès = 0
+Réétiqueter c de 11 à 11
+[Repassage] État de c: hauteur = 11, excès = 0
+Réétiqueter d de 12 à 12
+[Repassage] État de d: hauteur = 12, excès = 0
+Réétiqueter e de 12 à 12
+[Repassage] État de e: hauteur = 12, excès = 0
+Pousser 1 de f vers t
+[Repassage] État de f: hauteur = 1, excès = 0
+Réétiqueter g de 2 à 2
+[Repassage] État de g: hauteur = 2, excès = 0
+Réétiqueter h de 3 à 3
+[Repassage] État de h: hauteur = 3, excès = 0
+Excès à la source s remis à zéro.
 Flot maximum: 20
 

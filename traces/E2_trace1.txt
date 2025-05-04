@@ -32,28 +32,48 @@ Flot maximum: 20
 --- Méthode: Push Relabel ---
 Réétiqueter a de 0 à 1
 État de a: hauteur = 1, excès = 9
-Pousser 3 de a vers b
-Pousser 6 de a vers d
+Pousser 6 de a vers b
+Pousser 3 de a vers d
 État de a: hauteur = 1, excès = 0
 Réétiqueter b de 0 à 1
-État de b: hauteur = 1, excès = 8
-Réétiqueter a de 1 à 9
-État de a: hauteur = 9, excès = 0
+État de b: hauteur = 1, excès = 11
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
 Pousser 7 de b vers e
-État de b: hauteur = 1, excès = 1
-Réétiqueter a de 9 à 9
+État de b: hauteur = 1, excès = 4
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Réétiqueter b de 1 à 2
+État de b: hauteur = 2, excès = 4
+Réétiqueter a de 1 à 1
+État de a: hauteur = 1, excès = 0
+Pousser 4 de b vers a
+État de b: hauteur = 2, excès = 0
+Réétiqueter c de 0 à 1
+État de c: hauteur = 1, excès = 7
+Pousser 3 de a vers d
+État de a: hauteur = 1, excès = 1
+Réétiqueter a de 1 à 3
+État de a: hauteur = 3, excès = 1
+Pousser 1 de a vers b
+État de a: hauteur = 3, excès = 0
+Réétiqueter b de 2 à 4
+État de b: hauteur = 4, excès = 1
+Réétiqueter a de 3 à 5
+État de a: hauteur = 5, excès = 0
+Réétiqueter b de 4 à 6
+État de b: hauteur = 6, excès = 1
+Réétiqueter a de 5 à 7
+État de a: hauteur = 7, excès = 0
+Réétiqueter b de 6 à 8
+État de b: hauteur = 8, excès = 1
+Réétiqueter a de 7 à 9
 État de a: hauteur = 9, excès = 0
-Réétiqueter b de 1 à 9
+Réétiqueter b de 8 à 9
 État de b: hauteur = 9, excès = 1
 Réétiqueter a de 9 à 9
 État de a: hauteur = 9, excès = 0
 Pousser 1 de b vers s
-État de b: hauteur = 9, excès = 0
-Réétiqueter c de 0 à 1
-État de c: hauteur = 1, excès = 7
-Réétiqueter a de 9 à 9
-État de a: hauteur = 9, excès = 0
-Réétiqueter b de 9 à 9
 État de b: hauteur = 9, excès = 0
 Pousser 2 de c vers e
 Pousser 5 de c vers f
@@ -94,5 +114,6 @@ Réétiqueter e de 1 à 1
 État de e: hauteur = 1, excès = 0
 Pousser 5 de f vers t
 État de f: hauteur = 1, excès = 0
+Excès à la source s remis à zéro.
 Flot maximum: 20
 

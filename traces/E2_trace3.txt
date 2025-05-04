@@ -29,18 +29,19 @@ Iteration 5: Chemin augmentant: s -> a -> d -> e -> b -> f -> t avec flot 2
 Flot maximum: 17
 
 
+
 --- Méthode: Push Relabel ---
 Réétiqueter a de 0 à 1
 État de a: hauteur = 1, excès = 5
-Pousser 3 de a vers b
-Pousser 2 de a vers d
+Pousser 4 de a vers b
+Pousser 1 de a vers d
 État de a: hauteur = 1, excès = 0
 Réétiqueter b de 0 à 1
-État de b: hauteur = 1, excès = 11
+État de b: hauteur = 1, excès = 12
 Réétiqueter a de 1 à 1
 État de a: hauteur = 1, excès = 0
 Pousser 7 de b vers e
-Pousser 4 de b vers f
+Pousser 5 de b vers f
 État de b: hauteur = 1, excès = 0
 Réétiqueter c de 0 à 1
 État de c: hauteur = 1, excès = 4
@@ -51,64 +52,65 @@ Réétiqueter b de 1 à 1
 Pousser 4 de c vers f
 État de c: hauteur = 1, excès = 0
 Réétiqueter d de 0 à 1
-État de d: hauteur = 1, excès = 2
+État de d: hauteur = 1, excès = 1
 Réétiqueter a de 1 à 2
 État de a: hauteur = 2, excès = 0
 Réétiqueter b de 1 à 1
 État de b: hauteur = 1, excès = 0
-Réétiqueter c de 1 à 1
-État de c: hauteur = 1, excès = 0
-Pousser 2 de d vers e
+Réétiqueter c de 1 à 2
+État de c: hauteur = 2, excès = 0
+Pousser 1 de d vers e
 État de d: hauteur = 1, excès = 0
 Réétiqueter e de 0 à 1
-État de e: hauteur = 1, excès = 9
+État de e: hauteur = 1, excès = 8
 Réétiqueter a de 2 à 2
 État de a: hauteur = 2, excès = 0
 Réétiqueter b de 1 à 1
 État de b: hauteur = 1, excès = 0
-Réétiqueter c de 1 à 1
-État de c: hauteur = 1, excès = 0
+Réétiqueter c de 2 à 2
+État de c: hauteur = 2, excès = 0
 Réétiqueter d de 1 à 2
 État de d: hauteur = 2, excès = 0
 Pousser 7 de e vers t
-État de e: hauteur = 1, excès = 2
+État de e: hauteur = 1, excès = 1
 Réétiqueter a de 2 à 3
 État de a: hauteur = 3, excès = 0
 Réétiqueter b de 1 à 1
 État de b: hauteur = 1, excès = 0
-Réétiqueter c de 1 à 1
-État de c: hauteur = 1, excès = 0
+Réétiqueter c de 2 à 2
+État de c: hauteur = 2, excès = 0
 Réétiqueter d de 2 à 2
 État de d: hauteur = 2, excès = 0
 Réétiqueter e de 1 à 2
-État de e: hauteur = 2, excès = 2
+État de e: hauteur = 2, excès = 1
 Réétiqueter a de 3 à 3
 État de a: hauteur = 3, excès = 0
 Réétiqueter b de 1 à 1
 État de b: hauteur = 1, excès = 0
-Réétiqueter c de 1 à 1
-État de c: hauteur = 1, excès = 0
+Réétiqueter c de 2 à 2
+État de c: hauteur = 2, excès = 0
 Réétiqueter d de 2 à 3
 État de d: hauteur = 3, excès = 0
-Pousser 2 de e vers b
+Pousser 1 de e vers b
 État de e: hauteur = 2, excès = 0
 Réétiqueter f de 0 à 1
-État de f: hauteur = 1, excès = 8
+État de f: hauteur = 1, excès = 9
 Réétiqueter a de 3 à 4
 État de a: hauteur = 4, excès = 0
 Réétiqueter b de 1 à 2
-État de b: hauteur = 2, excès = 2
+État de b: hauteur = 2, excès = 1
 Réétiqueter a de 4 à 4
 État de a: hauteur = 4, excès = 0
-Pousser 2 de b vers f
+Pousser 1 de b vers f
 État de b: hauteur = 2, excès = 0
-Réétiqueter c de 1 à 2
-État de c: hauteur = 2, excès = 0
+Réétiqueter c de 2 à 3
+État de c: hauteur = 3, excès = 0
 Réétiqueter d de 3 à 3
 État de d: hauteur = 3, excès = 0
 Réétiqueter e de 2 à 3
 État de e: hauteur = 3, excès = 0
 Pousser 10 de f vers t
 État de f: hauteur = 1, excès = 0
+Excès à la source s remis à zéro.
 Flot maximum: 17
 

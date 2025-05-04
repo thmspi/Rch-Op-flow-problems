@@ -72,31 +72,34 @@ Réétiqueter c de 1 à 1
 État de c: hauteur = 1, excès = 0
 Pousser 4 de d vers c
 État de d: hauteur = 2, excès = 0
+Réétiqueter a de 1 à 1
+[Repassage] État de a: hauteur = 1, excès = 0
+Réétiqueter b de 2 à 2
+[Repassage] État de b: hauteur = 2, excès = 0
 Pousser 1 de c vers t
+[Repassage] État de c: hauteur = 1, excès = 3
+Réétiqueter a de 1 à 1
+[Repassage] État de a: hauteur = 1, excès = 0
+Réétiqueter b de 2 à 2
+[Repassage] État de b: hauteur = 2, excès = 0
+Réétiqueter c de 1 à 2
+[Repassage] État de c: hauteur = 2, excès = 3
+Réétiqueter a de 1 à 1
+[Repassage] État de a: hauteur = 1, excès = 0
+Réétiqueter b de 2 à 2
+[Repassage] État de b: hauteur = 2, excès = 0
+Pousser 3 de c vers a
+[Repassage] État de c: hauteur = 2, excès = 0
+Réétiqueter d de 2 à 7
+[Repassage] État de d: hauteur = 7, excès = 0
+Pousser 3 de a vers t
+[Repassage] État de a: hauteur = 1, excès = 0
+Réétiqueter b de 2 à 2
+[Repassage] État de b: hauteur = 2, excès = 0
+Réétiqueter c de 2 à 7
+[Repassage] État de c: hauteur = 7, excès = 0
+Réétiqueter d de 7 à 7
+[Repassage] État de d: hauteur = 7, excès = 0
+Excès à la source s remis à zéro.
 Flot maximum: 18
-
-Matrice des coûts:
-
-    ┌─────┬─────┬─────┬─────┬─────┬─────┐
-    │  A  │  B  │  C  │  D  │  E  │  F  │
-    ├─────┼─────┼─────┼─────┼─────┼─────┤
-  A │  0  │  4  │  0  │  2  │  4  │  0  │
-    ├─────┼─────┼─────┼─────┼─────┼─────┤
-  B │  0  │  0  │  2  │  0  │  0  │  3  │
-    ├─────┼─────┼─────┼─────┼─────┼─────┤
-  C │  0  │  0  │  0  │  0  │  0  │  3  │
-    ├─────┼─────┼─────┼─────┼─────┼─────┤
-  D │  0  │  4  │  0  │  0  │  0  │  6  │
-    ├─────┼─────┼─────┼─────┼─────┼─────┤
-  E │  0  │  0  │  0  │  2  │  0  │  2  │
-    ├─────┼─────┼─────┼─────┼─────┼─────┤
-  F │  0  │  0  │  0  │  0  │  0  │  0  │
-    └─────┴─────┴─────┴─────┴─────┴─────┘
-
---- Méthode: Flot à coût minimal ---
-Flow désiré par l'utilisateur: 4
-Iteration 1: chemin s -> d -> t | flot 1 | coût unitaire 6
-Iteration 2: chemin s -> a -> t | flot 3 | coût unitaire 7
-Flot total = 4
-Coût total = 27
 
