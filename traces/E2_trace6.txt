@@ -127,3 +127,29 @@ Réétiqueter d de 8 à 9
 Excès à la source s remis à zéro.
 Flot maximum: 5
 
+Matrice des coûts:
+
+    ┌─────┬─────┬─────┬─────┬─────┬─────┐
+    │  A  │  B  │  C  │  D  │  E  │  F  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  A │  0  │  3  │  1  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  B │  0  │  0  │  0  │  2  │  0  │  4  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  C │  0  │  0  │  0  │  1  │  5  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  D │  0  │  0  │  0  │  0  │  3  │  1  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  E │  0  │  0  │  0  │  0  │  0  │  6  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┤
+  F │  0  │  0  │  0  │  0  │  0  │  0  │
+    └─────┴─────┴─────┴─────┴─────┴─────┘
+
+--- Méthode: Flot à coût minimal ---
+Flow désiré par l'utilisateur: 4
+Iteration 1: chemin s -> b -> c -> t | flot 2 | coût unitaire 3
+Iteration 2: chemin s -> a -> t | flot 1 | coût unitaire 7
+Iteration 3: chemin s -> a -> c -> d -> t | flot 1 | coût unitaire 14
+Flot total = 4
+Coût total = 27
+
