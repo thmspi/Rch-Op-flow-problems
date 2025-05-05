@@ -117,4 +117,3 @@ Flow désiré par l'utilisateur: 4
 Iteration 1: chemin s -> a -> d -> t | flot 4 | coût unitaire 6
 Flot total = 4
 Coût total = 24
-

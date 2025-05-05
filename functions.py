@@ -146,6 +146,10 @@ def bfs(residual, source, sink):
     visited[source] = True
 
     while queue:
+        labels = generate_vertex_labels(len(visited))
+        print("Visité :", [labels[i] for i, v in enumerate(visited) if v])
+        print("Queue  :", [labels[i] for i in queue])
+
         u = queue.popleft()
 
         for v in range(n):
@@ -161,6 +165,8 @@ def bfs(residual, source, sink):
                         path.insert(0, current)
                         current = parent[current]
                     return path
+    print("Visité :", [labels[i] for i, v in enumerate(visited) if v])
+    print("Queue  :", [labels[i] for i in queue])
 
     return None  # Aucun chemin trouvable
 
@@ -294,14 +300,6 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
         if verbose:
             log_lines.append(f"État de {labels[u]}: hauteur = {height[u]}, excès = {excess[u]}")
 
-    # Delete all remaining excess next to the source
-    # for u in range(n):
-    #     if u != source and u != sink and excess[u] > 0:
-    #         for v in range(n):
-    #             if capacity[u][v] - flow[u][v] > 0 and height[u] == height[v] + 1:
-    #                 push(u, v)
-
-    # <<< NEW PART: Re-check for any remaining excess and reprocess if needed >>>
     while any(excess[i] > 0 for i in vertices):
         p = 0
         while p < len(vertices):
@@ -342,6 +340,28 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
 
 def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filename=None, verbose=True):
     n = len(capacity)
+
+    def print_bellman_table(dist, labels, title="Table de Bellman"):
+        n = len(dist)
+        width = 5
+
+        # Format distances (convert INF to 'INF')
+        formatted = [f"{dist[i] if dist[i] != float('inf') else 'INF':^{width}}" for i in range(n)]
+
+        # Header
+        top = "┌" + "┬".join(["─" * width for _ in labels]) + "┐"
+        header = "│" + "│".join([f"{label:^{width}}" for label in labels]) + "│"
+        sep = "├" + "┼".join(["─" * width for _ in labels]) + "┤"
+        row = "│" + "│".join(formatted) + "│"
+        bottom = "└" + "┴".join(["─" * width for _ in labels]) + "┘"
+
+        print(f"\n{title}")
+        print(top)
+        print(header)
+        print(sep)
+        print(row)
+        print(bottom)
+
     
     residual_cap = [row[:] for row in capacity]
     residual_cost = [row[:] for row in cost]       
@@ -400,8 +420,10 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
         path_labels = " -> ".join(labels[i] for i in path)
 
         if verbose:
-            print(f"Iteration {iteration}: distances -> {bellman_str}")
+            #print(f"Iteration {iteration}: distances -> {bellman_str}")
+            print_bellman_table(dist, labels, title=f"Table de Bellman – Itération {iteration}")
             print(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
+            
 
         log_lines.append(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
 
