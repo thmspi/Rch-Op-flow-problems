@@ -338,36 +338,36 @@ def push_relabel(capacity, source, sink, labels, log_filename=None, verbose=True
         log_results_to_file(log_filename, "Push Relabel", capacity, cost = None, log_content = log_lines)
     return max_flow
 
-def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filename=None, verbose=True):
+def min_cost_flow(capacity, cost, source, sink, desired_flow, labels, log_filename=None, verbose=True):
     n = len(capacity)
 
-    def print_bellman_table(dist, labels, title="Table de Bellman"):
-        n = len(dist)
-        width = 5
-
-        # Format distances (convert INF to 'INF')
-        formatted = [f"{dist[i] if dist[i] != float('inf') else 'INF':^{width}}" for i in range(n)]
-
-        # Header
-        top = "┌" + "┬".join(["─" * width for _ in labels]) + "┐"
-        header = "│" + "│".join([f"{label:^{width}}" for label in labels]) + "│"
-        sep = "├" + "┼".join(["─" * width for _ in labels]) + "┤"
-        row = "│" + "│".join(formatted) + "│"
-        bottom = "└" + "┴".join(["─" * width for _ in labels]) + "┘"
-
+    def print_bellman_full_table(dist_iterations, labels, title="Table de Bellman"):
+        cell_width = 7
         print(f"\n{title}")
+        # Header row
+        top = "┌" + "┬".join(["─" * cell_width for _ in range(n + 1)]) + "┐"
+        header = "│" + f"{'i':^{cell_width}}" + "│" + "│".join([f"{label:^{cell_width}}" for label in labels]) + "│"
+        sep = "├" + "┼".join(["─" * cell_width for _ in range(n + 1)]) + "┤"
         print(top)
         print(header)
         print(sep)
-        print(row)
+
+        # Each row is a Bellman iteration
+        for i, row in enumerate(dist_iterations):
+            values = [
+                f"{val if val != float('inf') else '∞':^{cell_width}}" for val in row
+            ]
+            line = f"│{i:^{cell_width}}│" + "│".join(values) + "│"
+            print(line)
+
+        bottom = "└" + "┴".join(["─" * cell_width for _ in range(n + 1)]) + "┘"
         print(bottom)
 
-    
     residual_cap = [row[:] for row in capacity]
-    residual_cost = [row[:] for row in cost]       
-    flow   = [[0]*n for _ in range(n)]
-    total_flow  = 0
-    total_cost  = 0
+    residual_cost = [row[:] for row in cost]
+    flow = [[0] * n for _ in range(n)]
+    total_flow = 0
+    total_cost = 0
     INF = float("inf")
     log_lines = []
     iteration = 0
@@ -378,28 +378,32 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
 
     while total_flow < desired_flow:
         iteration += 1
-        
-        dist   = [INF]*n
-        parent = [-1]*n
+        dist = [INF] * n
+        parent = [-1] * n
         dist[source] = 0
-        for _ in range(n-1):
+
+        # RECORD EACH STEP OF B-FORD
+        dist_iterations = [dist.copy()]
+        for _ in range(n - 1):
             improved = False
+            new_dist = dist.copy()
             for u in range(n):
-                if dist[u] == INF:           
+                if dist[u] == INF:
                     continue
                 for v in range(n):
-                    if residual_cap[u][v] > 0 and dist[u] + residual_cost[u][v] < dist[v]:
-                        dist[v] = dist[u] + residual_cost[u][v]
+                    if residual_cap[u][v] > 0 and dist[u] + residual_cost[u][v] < new_dist[v]:
+                        new_dist[v] = dist[u] + residual_cost[u][v]
                         parent[v] = u
                         improved = True
+            dist = new_dist
+            dist_iterations.append(dist.copy())
             if not improved:
                 break
 
-        
         if dist[sink] == INF:
             raise ValueError("Impossible d’envoyer le flot demandé : réseau saturé")
 
-        
+        # Reconstruct path and flow
         path = []
         path_flow = INF
         v = sink
@@ -410,36 +414,24 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
             v = u
         path.insert(0, source)
 
-        
         path_flow = min(path_flow, desired_flow - total_flow)
-
-        
-        bellman_str = ", ".join(
-            f"{labels[i]}:{dist[i] if dist[i]!=INF else 'INF'}" for i in range(n)
-        )
         path_labels = " -> ".join(labels[i] for i in path)
 
         if verbose:
-            #print(f"Iteration {iteration}: distances -> {bellman_str}")
-            print_bellman_table(dist, labels, title=f"Table de Bellman – Itération {iteration}")
+            print_bellman_full_table(dist_iterations, labels, title=f"Évolution Bellman – Itération {iteration}")
             print(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
-            
 
         log_lines.append(f"Iteration {iteration}: chemin {path_labels} | flot {path_flow} | coût unitaire {dist[sink]}")
 
-
-        
+        # Apply flow to the network
         v = sink
         while v != source:
             u = parent[v]
-           
             flow[u][v] += path_flow
             flow[v][u] -= path_flow
-            
             residual_cap[u][v] -= path_flow
             residual_cap[v][u] += path_flow
-            
-            residual_cost[v][u] = -residual_cost[u][v] 
+            residual_cost[v][u] = -residual_cost[u][v]
             v = u
 
         total_flow += path_flow
@@ -454,9 +446,10 @@ def min_cost_flow(capacity, cost, source, sink, desired_flow,labels, log_filenam
     log_lines.append(f"Flot total = {total_flow}")
     log_lines.append(f"Coût total = {total_cost}")
     if log_filename is not None:
-        log_results_to_file(log_filename, "Flot à coût minimal", capacity, cost, log_content = log_lines)
+        log_results_to_file(log_filename, "Flot à coût minimal", capacity, cost, log_content=log_lines)
 
     return total_flow, total_cost
+
 
 def generate_random_graph(n):
 

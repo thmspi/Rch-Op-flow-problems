@@ -116,4 +116,32 @@ Matrice des coûts:
 Flow désiré par l'utilisateur: 4
 Iteration 1: chemin s -> a -> d -> t | flot 4 | coût unitaire 6
 Flot total = 4
-Coût total = 24
+Coût total = 24Matrice des coûts:
+
+    ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+    │  A  │  B  │  C  │  D  │  E  │  F  │  G  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  A │  0  │  2  │  3  │  0  │  0  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  B │  0  │  0  │  0  │  4  │  1  │  0  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  C │  0  │  0  │  0  │  0  │  2  │  5  │  0  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  D │  0  │  0  │  0  │  0  │  0  │  0  │  3  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  E │  0  │  0  │  0  │  6  │  0  │  0  │  3  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  F │  0  │  0  │  0  │  0  │  8  │  0  │  4  │
+    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+  G │  0  │  0  │  0  │  0  │  0  │  0  │  0  │
+    └─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+--- Méthode: Flot à coût minimal ---
+Flow désiré par l'utilisateur: 300
+Iteration 1: chemin s -> a -> d -> t | flot 80 | coût unitaire 6
+Iteration 2: chemin s -> a -> c -> t | flot 70 | coût unitaire 9
+Iteration 3: chemin s -> b -> d -> a -> c -> t | flot 50 | coût unitaire 11
+Iteration 4: chemin s -> b -> e -> t | flot 100 | coût unitaire 12
+Flot total = 300
+Coût total = 2860
+
